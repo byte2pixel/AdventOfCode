@@ -2,7 +2,7 @@ using Advent.UseCases.Day1;
 
 namespace Advent.Tests.UseCases.Day1;
 
-public class Day1SolverTests
+public class Day1Solver1Tests
 {
     [Fact]
     public void Solve_ShouldReturnCorrectResult()

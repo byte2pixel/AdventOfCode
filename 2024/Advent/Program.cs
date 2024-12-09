@@ -13,6 +13,7 @@ var app = new CommandApp(registrar);
 app.Configure(config =>
 {
     config.AddCommand<Day1Command>("day1").WithDescription("Advent of Code 2024 Day 1");
+    config.AddCommand<Day2Command>("day2").WithDescription("Advent of Code 2024 Day 2");
 });
 
 return await app.RunAsync(args);
