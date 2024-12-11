@@ -4,7 +4,7 @@ using Spectre.Console.Cli;
 
 namespace Advent.Common.Settings;
 
-public sealed class AdventSettings : CommandSettings
+public class AdventSettings : CommandSettings
 {
     [CommandOption("-p|--part")]
     [Description("The part of the day to solve, Part 1 or Part 2")]
