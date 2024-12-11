@@ -1,5 +1,3 @@
-using System.Text;
-
 namespace Advent.UseCases.Day4;
 
 public readonly ref struct Day4Data(string[] input)

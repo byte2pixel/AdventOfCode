@@ -8,7 +8,7 @@
             "request": "launch",
             "program": "${workspaceFolder}/Advent/bin/debug/net9.0/Advent.dll",
             "console": "integratedTerminal",
-            "args": ["day2", "--part", "Part 2"],
+            "args": ["day5"],
             "cwd": "${workspaceFolder}/Advent"
         }
     ]
