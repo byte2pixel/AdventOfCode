@@ -9,14 +9,15 @@ public sealed class Day4Settings : AdventSettings
 {
     [CommandOption("-w|--word")]
     [Description("The word to search for in the crossword puzzle")]
-    [DefaultValue("XMAS")]
-    public string Word { get; init; } = "XMAS";
+    public required string Word { get; init; }
 
     public override ValidationResult Validate()
     {
         base.Validate();
-        return string.IsNullOrWhiteSpace(Word)
-            ? ValidationResult.Error("Invalid word to search for")
-            : ValidationResult.Success();
+        if (string.IsNullOrWhiteSpace(Word))
+            return ValidationResult.Error("Word must be provided using the -w|--word option");
+        if (Part == "Part 2" && Word?.Length % 2 == 0)
+            return ValidationResult.Error("Word must have an odd length for Part 2");
+        return ValidationResult.Success();
     }
 }

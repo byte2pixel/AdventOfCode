@@ -18,7 +18,7 @@ public class Day4Command(IFileReader reader, IAnsiConsole console)
         IDay4Solver solver = choice switch
         {
             "Part 1" => new Day4Part1Solver(settings.Word),
-            // "Part 2" => new Day3Part2Solver(),
+            "Part 2" => new Day4Part2Solver(settings.Word),
             _ => throw new InvalidOperationException("Invalid choice")
         };
 
