@@ -47,7 +47,7 @@ public class Day4Part1Solver : IDay4Solver
         {
             for (int i = range.Start.Value; i <= range.End.Value; i++)
             {
-                int[] letterIndexes = ComputeDiagIncIndexes(i, _wordLength, cols);
+                int[] letterIndexes = Day4Helpers.ComputeDiagIncIndexes(i, _wordLength, cols);
                 count += LookForWord(data, letterIndexes);
             }
         }
@@ -68,7 +68,7 @@ public class Day4Part1Solver : IDay4Solver
         {
             for (int i = range.Start.Value; i <= range.End.Value; i++)
             {
-                int[] letterIndexes = ComputeDiagDecIndexes(i, _wordLength, cols);
+                int[] letterIndexes = Day4Helpers.ComputeDiagDecIndexes(i, _wordLength, cols);
                 count += LookForWord(data, letterIndexes);
             }
         }
@@ -90,7 +90,7 @@ public class Day4Part1Solver : IDay4Solver
         {
             for (int i = range.Start.Value; i <= range.End.Value; i++)
             {
-                int[] letterIndexes = ComputeHorizontalIndexes(i, _wordLength);
+                int[] letterIndexes = Day4Helpers.ComputeHorizontalIndexes(i, _wordLength);
                 count += LookForWord(data, letterIndexes);
             }
         }
@@ -108,7 +108,7 @@ public class Day4Part1Solver : IDay4Solver
         {
             for (int i = range.Start.Value; i <= range.End.Value; i++)
             {
-                int[] letterIndexes = ComputeVerticalIndexes(i, _wordLength, cols);
+                int[] letterIndexes = Day4Helpers.ComputeVerticalIndexes(i, _wordLength, cols);
                 count += LookForWord(data, letterIndexes);
             }
         }
@@ -130,45 +130,5 @@ public class Day4Part1Solver : IDay4Solver
 
         // Compare spans directly
         return chars.SequenceEqual(_word) || chars.SequenceEqual(_reversedWord) ? 1 : 0;
-    }
-
-    private static int[] ComputeDiagDecIndexes(int i, int length, int columns)
-    {
-        int[] indexes = new int[length];
-        for (int j = 0; j < length; j++)
-        {
-            indexes[j] = i + (columns * j) + j;
-        }
-        return indexes;
-    }
-
-    private static int[] ComputeDiagIncIndexes(int i, int length, int columns)
-    {
-        int[] indexes = new int[length];
-        for (int j = 0; j < length; j++)
-        {
-            indexes[j] = i + (columns * j) - j;
-        }
-        return indexes;
-    }
-
-    private static int[] ComputeHorizontalIndexes(int i, int length)
-    {
-        int[] indexes = new int[length];
-        for (int j = 0; j < length; j++)
-        {
-            indexes[j] = i + j;
-        }
-        return indexes;
-    }
-
-    private static int[] ComputeVerticalIndexes(int i, int length, int columns)
-    {
-        int[] indexes = new int[length];
-        for (int j = 0; j < length; j++)
-        {
-            indexes[j] = i + (columns * j);
-        }
-        return indexes;
     }
 }
