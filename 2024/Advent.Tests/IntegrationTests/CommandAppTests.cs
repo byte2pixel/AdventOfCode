@@ -199,6 +199,7 @@ public class CommandAppTests : IClassFixture<TestFixture>
     }
     #endregion
 
+    #region Day5
     [Fact]
     public async Task Day5Part1_IntegrationTest_Success()
     {
@@ -244,6 +245,55 @@ public class CommandAppTests : IClassFixture<TestFixture>
         result.Output.Should().Contain("Day 5 Part 2");
         result.Output.Should().Contain("The answer is 5273");
     }
+    #endregion
+
+    #region Day6
+    [Fact]
+    public async Task Day6Part1_IntegrationTest_Success()
+    {
+        // Arrange
+        var args = new string[] { "day6", "--part", "Part 1" };
+        var app = new CommandAppTester(_registrar);
+
+        app.Configure(config =>
+        {
+            config.PropagateExceptions();
+            config.ConfigureConsole(_console);
+            config.AddCommand<Day6Command>("day6");
+        });
+
+        // Act
+        var result = await app.RunAsync(args);
+
+        // Assert
+        result.ExitCode.Should().Be(0);
+        result.Output.Should().Contain("Day 6 Part 1");
+        result.Output.Should().Contain("The answer is 5067");
+    }
+
+    [Fact]
+    public async Task Day6Part6_IntegrationTest_Success()
+    {
+        // Arrange
+        var args = new string[] { "day6", "--part", "Part 2" };
+        var app = new CommandAppTester(_registrar);
+
+        app.Configure(config =>
+        {
+            config.PropagateExceptions();
+            config.ConfigureConsole(_console);
+            config.AddCommand<Day6Command>("day6");
+        });
+
+        // Act
+        var result = await app.RunAsync(args);
+
+        // Assert
+        result.ExitCode.Should().Be(0);
+        result.Output.Should().Contain("Day 6 Part 2");
+        result.Output.Should().Contain("The answer is 1793");
+    }
+    #endregion
 }
 
 public class TestFixture

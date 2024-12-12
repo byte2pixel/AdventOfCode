@@ -18,4 +18,9 @@
     <PackageReference Include="Spectre.Console.Cli.Extensions.DependencyInjection" Version="0.2.0" />
   </ItemGroup>
 
+  <ItemGroup>
+    <InternalsVisibleTo Include="Advent.Tests" />
+  </ItemGroup>
+
+
 </Project>

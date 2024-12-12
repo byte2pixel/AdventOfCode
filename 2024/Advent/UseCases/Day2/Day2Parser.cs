@@ -6,7 +6,7 @@ public class Day2Parser
 
     public IEnumerable<IEnumerable<int>> Parse(string input)
     {
-        var lines = input.Split("\n");
+        var lines = input.Split('\n', StringSplitOptions.RemoveEmptyEntries);
         foreach (var line in lines)
         {
             if (string.IsNullOrEmpty(line))
