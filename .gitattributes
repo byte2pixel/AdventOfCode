@@ -1,0 +1,3 @@
+# Make sure the line endsing for the inputs stay consistent
+# across all operating systems.
+/input/*.txt text eol=lf
