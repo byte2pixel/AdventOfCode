@@ -3,42 +3,254 @@ using Microsoft.Extensions.DependencyInjection;
 using Spectre.Console.Cli;
 using Spectre.Console.Cli.Extensions.DependencyInjection;
 
-namespace Advent.Tests.IntegrationTests
+namespace Advent.Tests.IntegrationTests;
+
+public class CommandAppTests : IClassFixture<TestFixture>
 {
-    public class CommandAppTests
+    private readonly TestConsole _console = new();
+    private readonly FileReader _fileReader = new();
+    private readonly ServiceCollection _services = new();
+    private readonly DependencyInjectionRegistrar? _registrar;
+
+    public CommandAppTests()
     {
-        private const string _basePath = "../../../";
-        private readonly TestConsole _console = new();
-        private readonly FileReader _fileReader = new();
-        private readonly ServiceCollection _services = new();
-        private readonly DependencyInjectionRegistrar? _registrar;
+        _console.Profile.Capabilities.Interactive = true;
+        _services.AddSingleton<IFileReader>(_fileReader);
+        _registrar = new DependencyInjectionRegistrar(_services);
+    }
 
-        public CommandAppTests()
+    [Fact]
+    public async Task Day1Part1_IntegrationTest_Success()
+    {
+        // Arrange
+        var args = new string[] { "day1", "--part", "Part 1" };
+        var app = new CommandAppTester(_registrar);
+
+        app.Configure(config =>
         {
-            Directory.SetCurrentDirectory(_basePath);
-            _console.Profile.Capabilities.Interactive = true;
-            _services.AddSingleton<IFileReader>(_fileReader);
-            _registrar = new DependencyInjectionRegistrar(_services);
-        }
+            config.ConfigureConsole(_console);
+            config.AddCommand<Day1Command>("day1");
+        });
 
-        [Fact(Skip = "Console is not interactive, bug in CommandAppTester")]
-        public async Task Test1()
+        // Act
+        var result = await app.RunAsync(args);
+
+        // Assert
+        result.ExitCode.Should().Be(0);
+        result.Output.Should().Contain("Day 1 Part 1");
+        result.Output.Should().Contain("The answer is 3508942");
+    }
+
+    [Fact]
+    public async Task Day1Part2_IntegrationTest_Success()
+    {
+        // Arrange
+        var args = new string[] { "day1", "--part", "Part 2" };
+        var app = new CommandAppTester(_registrar);
+
+        app.Configure(config =>
         {
-            // Arrange
-            var args = new string[] { "day1" };
-            var app = new CommandAppTester(_registrar);
+            config.ConfigureConsole(_console);
+            config.AddCommand<Day1Command>("day1");
+        });
 
-            app.Configure(config =>
-            {
-                config.ConfigureConsole(_console);
-                config.AddCommand<Day1Command>("day1");
-            });
+        // Act
+        var result = await app.RunAsync(args);
 
-            // Act
-            var result = await app.RunAsync(args);
+        // Assert
+        result.ExitCode.Should().Be(0);
+        result.Output.Should().Contain("Day 1 Part 2");
+        result.Output.Should().Contain("The answer is 26593248");
+    }
 
-            // Assert
-            result.ExitCode.Should().Be(0);
-        }
+    [Fact]
+    public async Task Day2Part1_IntegrationTest_Success()
+    {
+        // Arrange
+        var args = new string[] { "day2", "--part", "Part 1" };
+        var app = new CommandAppTester(_registrar);
+
+        app.Configure(config =>
+        {
+            config.ConfigureConsole(_console);
+            config.AddCommand<Day2Command>("day2");
+        });
+
+        // Act
+        var result = await app.RunAsync(args);
+
+        // Assert
+        result.ExitCode.Should().Be(0);
+        result.Output.Should().Contain("Day 2 Part 1");
+        result.Output.Should().Contain("The answer is 269");
+    }
+
+    [Fact]
+    public async Task Day2Part2_IntegrationTest_Success()
+    {
+        // Arrange
+        var args = new string[] { "day2", "--part", "Part 2" };
+        var app = new CommandAppTester(_registrar);
+
+        app.Configure(config =>
+        {
+            config.ConfigureConsole(_console);
+            config.AddCommand<Day2Command>("day2");
+        });
+
+        // Act
+        var result = await app.RunAsync(args);
+
+        // Assert
+        result.ExitCode.Should().Be(0);
+        result.Output.Should().Contain("Day 2 Part 2");
+        result.Output.Should().Contain("The answer is 337");
+    }
+
+    #region Day3
+    [Fact]
+    public async Task Day3Part1_IntegrationTest_Success()
+    {
+        // Arrange
+        var args = new string[] { "day3", "--part", "Part 1" };
+        var app = new CommandAppTester(_registrar);
+
+        app.Configure(config =>
+        {
+            config.ConfigureConsole(_console);
+            config.AddCommand<Day3Command>("day3");
+        });
+
+        // Act
+        var result = await app.RunAsync(args);
+
+        // Assert
+        result.ExitCode.Should().Be(0);
+        result.Output.Should().Contain("Day 3 Part 1");
+        result.Output.Should().Contain("The answer is 166630675");
+    }
+
+    [Fact]
+    public async Task Day3Part2_IntegrationTest_Success()
+    {
+        // Arrange
+        var args = new string[] { "day3", "--part", "Part 2" };
+        var app = new CommandAppTester(_registrar);
+
+        app.Configure(config =>
+        {
+            config.ConfigureConsole(_console);
+            config.AddCommand<Day3Command>("day3");
+        });
+
+        // Act
+        var result = await app.RunAsync(args);
+
+        // Assert
+        result.ExitCode.Should().Be(0);
+        result.Output.Should().Contain("Day 3 Part 2");
+        result.Output.Should().Contain("The answer is 93465710");
+    }
+    #endregion
+
+    #region Day4
+    [Fact]
+    public async Task Day4Part1_IntegrationTest_Success()
+    {
+        // Arrange
+        var args = new string[] { "day4", "--part", "Part 1", "--word", "XMAS" };
+        var app = new CommandAppTester(_registrar);
+
+        app.Configure(config =>
+        {
+            config.ConfigureConsole(_console);
+            config.AddCommand<Day4Command>("day4");
+        });
+
+        // Act
+        var result = await app.RunAsync(args);
+
+        // Assert
+        result.ExitCode.Should().Be(0);
+        result.Output.Should().Contain("Day 4 Part 1");
+        result.Output.Should().Contain("The answer is 2618");
+    }
+
+    [Fact]
+    public async Task Day4Part2_IntegrationTest_Success()
+    {
+        // Arrange
+        var args = new string[] { "day4", "--part", "Part 2", "--word", "MAS" };
+        var app = new CommandAppTester(_registrar);
+
+        app.Configure(config =>
+        {
+            config.ConfigureConsole(_console);
+            config.AddCommand<Day4Command>("day4");
+        });
+
+        // Act
+        var result = await app.RunAsync(args);
+
+        // Assert
+        result.ExitCode.Should().Be(0);
+        result.Output.Should().Contain("Day 4 Part 2");
+        result.Output.Should().Contain("The answer is 2011");
+    }
+    #endregion
+
+    [Fact]
+    public async Task Day5Part1_IntegrationTest_Success()
+    {
+        // Arrange
+        var args = new string[] { "day5", "--part", "Part 1" };
+        var app = new CommandAppTester(_registrar);
+
+        app.Configure(config =>
+        {
+            config.PropagateExceptions();
+            config.ConfigureConsole(_console);
+            config.AddCommand<Day5Command>("day5");
+        });
+
+        // Act
+        var result = await app.RunAsync(args);
+
+        // Assert
+        result.ExitCode.Should().Be(0);
+        result.Output.Should().Contain("Day 5 Part 1");
+        result.Output.Should().Contain("The answer is 5639");
+    }
+
+    [Fact]
+    public async Task Day5Part2_IntegrationTest_Success()
+    {
+        // Arrange
+        var args = new string[] { "day5", "--part", "Part 2" };
+        var app = new CommandAppTester(_registrar);
+
+        app.Configure(config =>
+        {
+            config.PropagateExceptions();
+            config.ConfigureConsole(_console);
+            config.AddCommand<Day5Command>("day5");
+        });
+
+        // Act
+        var result = await app.RunAsync(args);
+
+        // Assert
+        result.ExitCode.Should().Be(0);
+        result.Output.Should().Contain("Day 5 Part 2");
+        result.Output.Should().Contain("The answer is 5273");
+    }
+}
+
+public class TestFixture
+{
+    public TestFixture()
+    {
+        // One-time setup goes here
+        Directory.SetCurrentDirectory("../../../");
     }
 }

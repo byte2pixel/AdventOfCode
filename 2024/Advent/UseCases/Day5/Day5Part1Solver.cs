@@ -30,27 +30,14 @@ public class Day5Part1Solver : IDay5Solver
         for (int j = 0; j < pages.Length; j++)
         {
             // for each page number, iterate over the print rules
+            HashSet<int> previousPages = pages[..j].ToArray().ToHashSet();
             if (printRules.TryGetValue(pages[j], out List<int>? rules))
             {
-                int[] previousPages = pages[..j].ToArray();
-                if (CheckTheRules(previousPages, rules))
+                if (Day5Helper.AlreadyFollowingRules(previousPages, rules))
                     continue;
                 return 0;
             }
         }
         return pages[pages.Length / 2];
-    }
-
-    private static bool CheckTheRules(int[] previousPages, List<int> rules)
-    {
-        foreach (int rule in rules) // Linq is slower
-        {
-            if (previousPages.Contains(rule))
-            {
-                // Rule violation found
-                return false;
-            }
-        }
-        return true;
     }
 }
