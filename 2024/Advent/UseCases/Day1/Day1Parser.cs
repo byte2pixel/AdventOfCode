@@ -7,7 +7,7 @@ public class Day1Parser
 
     public (List<int>, List<int>) Parse(string input)
     {
-        var lines = input.Split("\n");
+        var lines = input.Split('\n', StringSplitOptions.RemoveEmptyEntries);
         foreach (var line in lines)
         {
             var numbers = line.Split("   ");
