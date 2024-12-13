@@ -1,4 +1,3 @@
-using Advent.Tests.Common;
 using Advent.UseCases.Day7;
 
 namespace Advent.Tests.UseCases.Day7;

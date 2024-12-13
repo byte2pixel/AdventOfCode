@@ -67,4 +67,19 @@ public readonly ref struct GridData
         }
         return results;
     }
+
+    internal char[] GetUniqueChars(char[] filterChars)
+    {
+        var uniqueChars = new HashSet<char>();
+        for (int row = 0; row < Rows; row++)
+        {
+            for (int column = 0; column < Columns; column++)
+            {
+                if (filterChars.Contains(this[row, column]))
+                    continue;
+                uniqueChars.Add(this[row, column]);
+            }
+        }
+        return [.. uniqueChars];
+    }
 }

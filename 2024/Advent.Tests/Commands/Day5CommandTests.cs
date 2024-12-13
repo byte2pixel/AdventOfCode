@@ -1,5 +1,4 @@
 using Advent.Common.Settings;
-using Advent.Tests.Common;
 using Spectre.Console.Cli;
 
 namespace Advent.Tests.Commands;
