@@ -1,9 +1,8 @@
-using Advent.Tests.Common;
 using Advent.UseCases.Day7;
 
 namespace Advent.Tests.UseCases.Day7;
 
-public class Day6ParserTests
+public class Day7ParserTests
 {
     [Fact]
     public void ParseInput_ShouldReturnExpectedResult()
