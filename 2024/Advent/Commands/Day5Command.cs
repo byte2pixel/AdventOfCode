@@ -1,4 +1,3 @@
-using System.Diagnostics;
 using Advent.Common;
 using Advent.Common.Commands;
 using Advent.Common.Settings;

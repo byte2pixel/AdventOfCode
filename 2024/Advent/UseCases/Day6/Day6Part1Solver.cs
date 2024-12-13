@@ -1,6 +1,4 @@
-using System.Diagnostics;
 using Advent.Common;
-using Spectre.Console;
 
 namespace Advent.UseCases.Day6;
 
