@@ -27,6 +27,7 @@ Example from `./2024/Advent` folder
 dotnet run -- day1
 dotnet run -- day2
 dotnet run -- day3
+dotnet run -- day6
 ```
 
 Each day may have multipl parts use the help command to see additional arguments.
@@ -46,18 +47,20 @@ dotnet run -- day1 --part "Part 2"
 ### Run Solutions (Option 1)
 
 Example from `./2024/Advent` folder
+The key is the input folder with all the input files needs to be located in the current directory.
 
 ```sh
 dotnet build -c Release
-cd ./bin/Release/net9.0
-./Advent.exe --help
-./Advent.exe day1
-./Advent.exe day1 --part "Part 2"
+./bin/Release/net9.0/Advent.exe --help
+./bin/Release/net9.0/Advent.exe day1
+./bin/Release/net9.0/Advent.exe day6 --part "Part 2"
 ```
 
 ## Tests
 
-I wrote the code using tests first using the sample data they gave in the examples
+I wrote the code using tests first using the sample data they gave in the examples.
+Funny how sometimes you'll get the code working against the test data but then find it fails on the real data.
+Seemed to be 50/50 for me.
 
 From repository root:
 
