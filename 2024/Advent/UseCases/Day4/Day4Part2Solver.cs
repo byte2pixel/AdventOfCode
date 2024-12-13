@@ -1,6 +1,5 @@
 using System.Buffers;
 using System.Diagnostics;
-using System.Linq;
 using Spectre.Console;
 
 namespace Advent.UseCases.Day4;
