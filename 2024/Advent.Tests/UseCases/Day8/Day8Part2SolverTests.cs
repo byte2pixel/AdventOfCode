@@ -1,7 +1,7 @@
 using Advent.UseCases.Day6;
 using Advent.UseCases.Day8;
 
-namespace AdventTests.UseCases.Day8;
+namespace Advent.Tests.UseCases.Day8;
 
 public class Day8Part2SolverTests
 {
