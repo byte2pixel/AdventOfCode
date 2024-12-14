@@ -2,13 +2,13 @@ using Advent.UseCases.Day9;
 
 namespace Advent.Tests.UseCases.Day9;
 
-public class Day9Part1SolverTests
+public class Day9Part2SolverTests
 {
-    private readonly Day9Part1Solver _solver;
+    private readonly Day9Part2Solver _solver;
 
-    public Day9Part1SolverTests()
+    public Day9Part2SolverTests()
     {
-        _solver = new Day9Part1Solver();
+        _solver = new Day9Part2Solver();
     }
 
     [Fact]
@@ -28,6 +28,6 @@ public class Day9Part1SolverTests
         ulong result = _solver.Solve(TestData.Day9ParsedData);
 
         // Assert
-        result.Should().Be(1928);
+        result.Should().Be(2858);
     }
 }
