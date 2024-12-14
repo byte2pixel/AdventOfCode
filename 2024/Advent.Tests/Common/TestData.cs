@@ -1,3 +1,5 @@
+using Advent.UseCases.Day9;
+
 namespace Advent.Tests.Common;
 
 internal static class TestData
@@ -41,4 +43,51 @@ internal static class TestData
         + ".........A..\n"
         + "............\n"
         + "............\n";
+
+    internal const string Day9ParserInput = "2333133121414131402";
+    internal static uint[] Day9ParsedData =
+    [
+        0,
+        0,
+        uint.MaxValue,
+        uint.MaxValue,
+        uint.MaxValue,
+        1,
+        1,
+        1,
+        uint.MaxValue,
+        uint.MaxValue,
+        uint.MaxValue,
+        2,
+        uint.MaxValue,
+        uint.MaxValue,
+        uint.MaxValue,
+        3,
+        3,
+        3,
+        uint.MaxValue,
+        4,
+        4,
+        uint.MaxValue,
+        5,
+        5,
+        5,
+        5,
+        uint.MaxValue,
+        6,
+        6,
+        6,
+        6,
+        uint.MaxValue,
+        7,
+        7,
+        7,
+        uint.MaxValue,
+        8,
+        8,
+        8,
+        8,
+        9,
+        9
+    ];
 }
