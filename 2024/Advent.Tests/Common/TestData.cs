@@ -1,5 +1,4 @@
 using System.Collections.Immutable;
-using Advent.UseCases.Day9;
 
 namespace Advent.Tests.Common;
 
@@ -130,4 +129,7 @@ internal static class TestData
         + "765.987\n"
         + "876....\n"
         + "987....";
+
+    internal const string Day11TestData = "0 1 10 99 999\n";
+    internal const string Day11TestData2 = "125 17\n";
 }
