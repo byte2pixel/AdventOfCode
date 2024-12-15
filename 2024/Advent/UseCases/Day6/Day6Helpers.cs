@@ -16,32 +16,26 @@ public static class Day6Helpers
         };
     }
 
-    public static (int Row, int Column) GoBackOne(
-        (int Row, int Column) currentPosition,
-        Direction currentDirection
-    )
+    public static Vertex GoBackOne(Vertex currentPosition, Direction currentDirection)
     {
         return currentDirection switch
         {
-            Direction.North => (currentPosition.Row + 1, currentPosition.Column),
-            Direction.East => (currentPosition.Row, currentPosition.Column - 1),
-            Direction.South => (currentPosition.Row - 1, currentPosition.Column),
-            Direction.West => (currentPosition.Row, currentPosition.Column + 1),
+            Direction.North => currentPosition.South,
+            Direction.East => currentPosition.West,
+            Direction.South => currentPosition.North,
+            Direction.West => currentPosition.East,
             _ => throw new NotImplementedException(),
         };
     }
 
-    public static (int Row, int Column) GoForwardOne(
-        (int Row, int Column) currentPosition,
-        Direction currentDirection
-    )
+    public static Vertex GoForwardOne(Vertex currentPosition, Direction currentDirection)
     {
         return currentDirection switch
         {
-            Direction.North => (currentPosition.Row - 1, currentPosition.Column),
-            Direction.East => (currentPosition.Row, currentPosition.Column + 1),
-            Direction.South => (currentPosition.Row + 1, currentPosition.Column),
-            Direction.West => (currentPosition.Row, currentPosition.Column - 1),
+            Direction.North => currentPosition.North,
+            Direction.East => currentPosition.East,
+            Direction.South => currentPosition.South,
+            Direction.West => currentPosition.West,
             _ => throw new NotImplementedException(),
         };
     }

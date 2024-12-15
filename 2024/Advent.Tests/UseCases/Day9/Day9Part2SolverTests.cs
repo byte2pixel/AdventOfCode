@@ -25,7 +25,8 @@ public class Day9Part2SolverTests
     public void Solve_WhenInputIsValid_ReturnsHash()
     {
         // Act
-        ulong result = _solver.Solve(TestData.Day9ParsedData);
+        var solver = new Day9Part2Solver();
+        ulong result = solver.Solve(TestData.GetDay9ParsedData());
 
         // Assert
         result.Should().Be(2858);

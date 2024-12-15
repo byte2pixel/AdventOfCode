@@ -21,6 +21,7 @@ app.Configure(config =>
     config.AddCommand<Day7Command>("day7").WithDescription("Advent of Code 2024 Day 7");
     config.AddCommand<Day8Command>("day8").WithDescription("Advent of Code 2024 Day 8");
     config.AddCommand<Day9Command>("day9").WithDescription("Advent of Code 2024 Day 9");
+    config.AddCommand<Day10Command>("day10").WithDescription("Advent of Code 2024 Day 10");
 });
 
 return await app.RunAsync(args);

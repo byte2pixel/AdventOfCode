@@ -17,8 +17,8 @@ public class Day9Part2Solver : IDay9Solver
         sw.Start();
 
         // Step 2: Copy the span up to and including the first uint.MaxValue
-        var (fileId, index, count) = FindConsecutiveFromEnd(input);
-        var freeSpace = FindConsecutiveFreeSpaceFromStart(input, count, index - 1);
+        var (fileId, index, count) = FindFileToMove(input);
+        var freeSpace = FindFreeSpaceChunk(input, count, index - 1);
         while (index > 0)
         {
             // splice the file id into the free space in the input span
@@ -30,12 +30,12 @@ public class Day9Part2Solver : IDay9Solver
                     input[index + i] = uint.MaxValue;
                 }
             }
-            (fileId, index, count) = FindConsecutiveFromEnd(input, index - 1);
-            freeSpace = FindConsecutiveFreeSpaceFromStart(input, count, index - 1);
+            (fileId, index, count) = FindFileToMove(input, index - 1);
+            freeSpace = FindFreeSpaceChunk(input, count, index - 1);
         }
 
         ulong hash = ComputeHash(input);
-        sw.Stop(); // averages 3.7 ms
+        sw.Stop(); // averages 760 ms
         AnsiConsole.WriteLine($"Elapsed time: {sw.Elapsed.TotalMilliseconds} ms");
         return hash;
     }
@@ -47,7 +47,7 @@ public class Day9Part2Solver : IDay9Solver
     /// <param name="span"></param>
     /// <param name="lastIndex"></param>
     /// <returns></returns>
-    private static (uint fileId, int index, int count) FindConsecutiveFromEnd(
+    private static (uint fileId, int index, int count) FindFileToMove(
         Span<uint> span,
         int? lastIndex = null
     )
@@ -93,7 +93,7 @@ public class Day9Part2Solver : IDay9Solver
     /// <param name="spaceNeeded"></param>
     /// <param name="endIndex"></param>
     /// <returns></returns>
-    private (uint fileId, int index, int count) FindConsecutiveFreeSpaceFromStart(
+    private static (uint fileId, int index, int count) FindFreeSpaceChunk(
         Span<uint> span,
         int spaceNeeded,
         int? endIndex = null
