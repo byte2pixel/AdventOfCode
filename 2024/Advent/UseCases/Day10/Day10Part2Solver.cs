@@ -5,24 +5,19 @@ using Spectre.Console;
 
 namespace Advent.UseCases.Day10;
 
-internal struct Node
-{
-    public int TrailIndex { get; set; }
-    public Vertex Position { get; set; }
-    public Vertex Trailhead { get; set; }
-}
-
-public class Day10Part1Solver : IDay6Solver
+public class Day10Part2Solver : IDay6Solver
 {
     // trails start at 0 and end at 9 and must be visited in order
     private static readonly char[] trailPath = ['0', '1', '2', '3', '4', '5', '6', '7', '8', '9'];
 
-    private readonly Dictionary<Vertex, HashSet<Vertex>> TrailheadScores = [];
+    private readonly Dictionary<Vertex, int> TrailheadScores = [];
 
     /// <summary>
-    /// Find all trailheads and then traverse the graph to find all possible paths
-    /// only counting the unique trail ends
+    /// Basically the same as Part 1, but we're counting the number of times we reach the end of the trail
+    /// including branches that join back up
     /// </summary>
+    /// <param name="input"></param>
+    /// <returns></returns>
     public int Solve(GridData input)
     {
         Stopwatch sw = new();
@@ -35,16 +30,15 @@ public class Day10Part1Solver : IDay6Solver
             var c = input.Adjacent(trailhead, trailPath[1]);
             EnqueueNextNode(input, graph, trailhead, c);
         }
-
         while (graph.Count > 0)
         {
             var node = graph.Dequeue();
             var c = input.Adjacent(node.Position, trailPath[node.TrailIndex + 1]);
             EnqueueNextNode(input, graph, node.Trailhead, c, node.TrailIndex + 1);
         }
-        sw.Stop(); // Averages 6 ms
+        sw.Stop(); // Averages 5.4 ms
         AnsiConsole.WriteLine($"FindAll took {sw.Elapsed.TotalMilliseconds} ms");
-        int result = TrailheadScores.Values.Select(x => x.Count).Sum();
+        int result = TrailheadScores.Values.Sum();
         return result;
     }
 
@@ -60,9 +54,6 @@ public class Day10Part1Solver : IDay6Solver
         {
             if (input[vertex] != trailPath[^1])
             {
-                // could track visited nodes here to avoid revisiting
-                // if coming from the same trailhead, but it slows down the process
-                // because the data set is small
                 graph.Enqueue(
                     new Node
                     {
@@ -74,13 +65,13 @@ public class Day10Part1Solver : IDay6Solver
             }
             else
             {
-                if (TrailheadScores.TryGetValue(trailhead, out HashSet<Vertex>? score))
+                if (TrailheadScores.TryGetValue(trailhead, out int score))
                 {
-                    score.Add(vertex);
+                    TrailheadScores[trailhead] = score + 1;
                 }
                 else
                 {
-                    TrailheadScores[trailhead] = [vertex];
+                    TrailheadScores[trailhead] = 1;
                 }
             }
         }
