@@ -20,7 +20,7 @@ public class Day10Command(IFileReader reader, IAnsiConsole console)
         IDay6Solver solver = choice switch
         {
             "Part 1" => new Day10Part1Solver(),
-            // "Part 2" => new Day9Part2Solver(),
+            "Part 2" => new Day10Part2Solver(),
             _ => throw new InvalidOperationException("Invalid choice")
         };
 
