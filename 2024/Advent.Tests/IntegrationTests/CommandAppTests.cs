@@ -486,6 +486,54 @@ public class CommandAppTests : IClassFixture<TestFixture>
         result.Output.Should().Contain("The answer is 966");
     }
     #endregion
+
+    #region Day11
+    [Fact]
+    public async Task Day11Part1_IntegrationTest_Success()
+    {
+        // Arrange
+        var args = new string[] { "day11", "--part", "Part 1" };
+        var app = new CommandAppTester(_registrar);
+
+        app.Configure(config =>
+        {
+            config.PropagateExceptions();
+            config.ConfigureConsole(_console);
+            config.AddCommand<Day11Command>("day11");
+        });
+
+        // Act
+        var result = await app.RunAsync(args);
+
+        // Assert
+        result.ExitCode.Should().Be(0);
+        result.Output.Should().Contain("Day 11 Part 1");
+        result.Output.Should().Contain("The answer is 203953");
+    }
+
+    [Fact]
+    public async Task Day11Part2_IntegrationTest_Success()
+    {
+        // Arrange
+        var args = new string[] { "day11", "--part", "Part 2" };
+        var app = new CommandAppTester(_registrar);
+
+        app.Configure(config =>
+        {
+            config.PropagateExceptions();
+            config.ConfigureConsole(_console);
+            config.AddCommand<Day11Command>("day11");
+        });
+
+        // Act
+        var result = await app.RunAsync(args);
+
+        // Assert
+        result.ExitCode.Should().Be(0);
+        result.Output.Should().Contain("Day 11 Part 2");
+        result.Output.Should().Contain("The answer is 242090118578155");
+    }
+    #endregion
 }
 
 public class TestFixture

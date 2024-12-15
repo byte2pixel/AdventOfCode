@@ -1,4 +1,3 @@
-using System.Runtime.InteropServices;
 using Advent.UseCases.Day6;
 
 namespace Advent.Tests.UseCases.Day6;
