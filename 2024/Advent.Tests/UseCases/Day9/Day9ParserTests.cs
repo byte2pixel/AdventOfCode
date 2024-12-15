@@ -71,13 +71,14 @@ public class Day9ParserTests
     [Fact]
     public void Parse_WhenInputIsValie_DiskMap2()
     {
+        var data = TestData.GetDay9ParsedData();
         // Act
         Span<uint> result = _parser.Parse(TestData.Day9ParserInput);
 
         var resultArray = result.ToArray();
         // Assert
         resultArray.Should().NotBeNull();
-        resultArray.Should().HaveCount(TestData.Day9ParsedData.Length);
-        resultArray.Should().BeEquivalentTo(TestData.Day9ParsedData);
+        resultArray.Should().HaveCount(data.Length);
+        resultArray.Should().BeEquivalentTo(data);
     }
 }

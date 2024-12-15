@@ -9,7 +9,7 @@ namespace Advent.UseCases.Day8
         {
             var copyOfGrid = input;
             var uniqueSignals = input.GetUniqueChars(['.']);
-            HashSet<(int x, int y)> overlapNodes = [];
+            HashSet<Vertex> overlapNodes = [];
             foreach (var signal in uniqueSignals)
             {
                 var antennaLocations = input.FindAll(signal);
@@ -22,8 +22,8 @@ namespace Advent.UseCases.Day8
 
         private static void PlaceAntiNodes(
             GridData copyOfGrid,
-            IEnumerable<(int row, int column)> antennaLocations,
-            HashSet<(int x, int y)> overlapNodes
+            IEnumerable<Vertex> antennaLocations,
+            HashSet<Vertex> overlapNodes
         )
         {
             for (var i = 0; i < antennaLocations.Count(); i++)
@@ -56,18 +56,15 @@ namespace Advent.UseCases.Day8
             }
         }
 
-        private static (int, int) GetNewLocation(
-            (int row, int column) location,
-            (int x, int y) node
-        )
+        private static Vertex GetNewLocation(Vertex location, Vertex node)
         {
-            return (location.row + node.x, location.column + node.y);
+            return new(location.Row + node.Row, location.Column + node.Column);
         }
 
         private static void ReplaceWithAnitNode(
             GridData copyOfGrid,
-            HashSet<(int x, int y)> overlapNodes,
-            (int, int) node1
+            HashSet<Vertex> overlapNodes,
+            Vertex node1
         )
         {
             if (copyOfGrid.IsValid(node1))
@@ -79,14 +76,13 @@ namespace Advent.UseCases.Day8
             }
         }
 
-        private static (int x, int y)[] GetAntennasDifference(
-            (int row, int column) antenna1,
-            (int row, int column) antenna2
-        )
+        private static Vertex[] GetAntennasDifference(Vertex antenna1, Vertex antenna2)
         {
-            (int x1, int y1) = antenna1;
-            (int x2, int y2) = antenna2;
-            return [(x2 - x1, y2 - y1), (x1 - x2, y1 - y2)];
+            return
+            [
+                new Vertex(antenna2.Row - antenna1.Row, antenna2.Column - antenna1.Column),
+                new Vertex(antenna1.Row - antenna2.Row, antenna1.Column - antenna2.Column)
+            ];
         }
     }
 }

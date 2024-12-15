@@ -1,3 +1,4 @@
+using System.Collections.Immutable;
 using Advent.UseCases.Day9;
 
 namespace Advent.Tests.Common;
@@ -45,7 +46,10 @@ internal static class TestData
         + "............\n";
 
     internal const string Day9ParserInput = "2333133121414131402";
-    internal static uint[] Day9ParsedData =
+
+    internal static uint[] GetDay9ParsedData() => [.. Day9ParsedData];
+
+    private static readonly ImmutableArray<uint> Day9ParsedData =
     [
         0,
         0,
@@ -90,4 +94,40 @@ internal static class TestData
         9,
         9
     ];
+
+    internal const string Day10TestData =
+        "89010123\n"
+        + "78121874\n"
+        + "87430965\n"
+        + "96549874\n"
+        + "45678903\n"
+        + "32019012\n"
+        + "01329801\n"
+        + "10456732";
+    internal const string Day10TestData2 =
+        "...0...\n"
+        + "...1...\n"
+        + "...2...\n"
+        + "6543456\n"
+        + "7.....7\n"
+        + "8.....8\n"
+        + "9.....9\n";
+
+    /*
+    ..90..9
+    ...1.98
+    ...2..7
+    6543456
+    765.987
+    876....
+    987....
+    */
+    internal const string Day10TestData3 =
+        "..90..9\n"
+        + "...1.98\n"
+        + "...2..7\n"
+        + "6543456\n"
+        + "765.987\n"
+        + "876....\n"
+        + "987....";
 }

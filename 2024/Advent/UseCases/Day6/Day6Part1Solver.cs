@@ -1,10 +1,12 @@
+using System.Diagnostics;
 using Advent.Common;
+using Spectre.Console;
 
 namespace Advent.UseCases.Day6;
 
 public class Day6Part1Solver : IDay6Solver
 {
-    private (int Row, int Column) _currentPosition;
+    private Vertex _currentPosition;
     private Direction _currentDirection;
 
     private void MarkAsVisited(GridData data)
@@ -14,13 +16,13 @@ public class Day6Part1Solver : IDay6Solver
 
     private void Move(GridData data)
     {
-        while (data.IsValid(Day6Helpers.GoForwardOne(_currentPosition, _currentDirection)))
+        while (data.IsValid(_currentPosition, _currentDirection))
         {
-            _currentPosition = Day6Helpers.GoForwardOne(_currentPosition, _currentDirection);
-            if (data[_currentPosition.Row, _currentPosition.Column] == '#')
+            _currentPosition = _currentPosition.Go(_currentDirection);
+            if (data[_currentPosition] == '#')
             {
-                _currentPosition = Day6Helpers.GoBackOne(_currentPosition, _currentDirection);
-                _currentDirection = Day6Helpers.TurnRight(_currentDirection);
+                _currentPosition = _currentPosition.Go(_currentDirection.TurnAround());
+                _currentDirection = _currentDirection.TurnRight();
                 continue;
             }
             MarkAsVisited(data);
@@ -29,10 +31,15 @@ public class Day6Part1Solver : IDay6Solver
 
     public int Solve(GridData input)
     {
+        Stopwatch sw = new();
+        sw.Start();
         _currentPosition = input.Find('^');
         _currentDirection = Direction.North;
         MarkAsVisited(input);
         Move(input);
-        return input.Count('X');
+        var count = input.Count('X');
+        sw.Stop(); // Average 2.75 ms
+        AnsiConsole.WriteLine($"Elapsed time: {sw.Elapsed.TotalMilliseconds} ms");
+        return count;
     }
 }
