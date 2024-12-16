@@ -5,11 +5,11 @@ using Spectre.Console;
 
 namespace Advent.UseCases.Day10;
 
-internal struct Node
+internal struct Day10Node
 {
     public int TrailIndex { get; set; }
-    public Vertex Position { get; set; }
-    public Vertex Trailhead { get; set; }
+    public GridCell Position { get; set; }
+    public GridCell Trailhead { get; set; }
 }
 
 public class Day10Part1Solver : IDay6Solver
@@ -17,7 +17,7 @@ public class Day10Part1Solver : IDay6Solver
     // trails start at 0 and end at 9 and must be visited in order
     private static readonly char[] trailPath = ['0', '1', '2', '3', '4', '5', '6', '7', '8', '9'];
 
-    private readonly Dictionary<Vertex, HashSet<Vertex>> TrailheadScores = [];
+    private readonly Dictionary<GridCell, HashSet<GridCell>> TrailheadScores = [];
 
     /// <summary>
     /// Find all trailheads and then traverse the graph to find all possible paths
@@ -28,7 +28,7 @@ public class Day10Part1Solver : IDay6Solver
         Stopwatch sw = new();
         sw.Start();
         var trailheads = input.FindAll(trailPath[0]).ToArray();
-        var graph = new Queue<Node>();
+        var graph = new Queue<Day10Node>();
 
         foreach (var trailhead in trailheads)
         {
@@ -50,37 +50,37 @@ public class Day10Part1Solver : IDay6Solver
 
     private void EnqueueNextNode(
         GridData input,
-        Queue<Node> graph,
-        Vertex trailhead,
-        IEnumerable<Vertex> c,
+        Queue<Day10Node> graph,
+        GridCell trailhead,
+        IEnumerable<GridCell> c,
         int nextNodeIndex = 1
     )
     {
-        foreach (var vertex in c)
+        foreach (var cell in c)
         {
-            if (input[vertex] != trailPath[^1])
+            if (input[cell] != trailPath[^1])
             {
                 // could track visited nodes here to avoid revisiting
                 // if coming from the same trailhead, but it slows down the process
                 // because the data set is small
                 graph.Enqueue(
-                    new Node
+                    new Day10Node
                     {
                         TrailIndex = nextNodeIndex,
-                        Position = vertex,
+                        Position = cell,
                         Trailhead = trailhead
                     }
                 );
             }
             else
             {
-                if (TrailheadScores.TryGetValue(trailhead, out HashSet<Vertex>? score))
+                if (TrailheadScores.TryGetValue(trailhead, out HashSet<GridCell>? score))
                 {
-                    score.Add(vertex);
+                    score.Add(cell);
                 }
                 else
                 {
-                    TrailheadScores[trailhead] = [vertex];
+                    TrailheadScores[trailhead] = [cell];
                 }
             }
         }
