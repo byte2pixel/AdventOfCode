@@ -16,7 +16,7 @@ public static class Day6Helpers
         };
     }
 
-    public static Vertex GoBackOne(Vertex currentPosition, Direction currentDirection)
+    public static GridCell GoBackOne(GridCell currentPosition, Direction currentDirection)
     {
         return currentDirection switch
         {
@@ -28,7 +28,7 @@ public static class Day6Helpers
         };
     }
 
-    public static Vertex GoForwardOne(Vertex currentPosition, Direction currentDirection)
+    public static GridCell GoForwardOne(GridCell currentPosition, Direction currentDirection)
     {
         return currentDirection switch
         {

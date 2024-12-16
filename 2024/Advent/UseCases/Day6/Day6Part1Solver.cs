@@ -6,7 +6,7 @@ namespace Advent.UseCases.Day6;
 
 public class Day6Part1Solver : IDay6Solver
 {
-    private Vertex _currentPosition;
+    private GridCell _currentPosition;
     private Direction _currentDirection;
 
     private void MarkAsVisited(GridData data)

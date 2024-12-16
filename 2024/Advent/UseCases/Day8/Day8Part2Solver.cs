@@ -9,7 +9,7 @@ namespace Advent.UseCases.Day8
         {
             var copyOfGrid = input;
             var uniqueSignals = input.GetUniqueChars(['.']);
-            HashSet<Vertex> overlapNodes = [];
+            HashSet<GridCell> overlapNodes = [];
             foreach (var signal in uniqueSignals)
             {
                 var antennaLocations = input.FindAll(signal);
@@ -22,8 +22,8 @@ namespace Advent.UseCases.Day8
 
         private static void PlaceAntiNodes(
             GridData copyOfGrid,
-            IEnumerable<Vertex> antennaLocations,
-            HashSet<Vertex> overlapNodes
+            IEnumerable<GridCell> antennaLocations,
+            HashSet<GridCell> overlapNodes
         )
         {
             for (var i = 0; i < antennaLocations.Count(); i++)
@@ -56,15 +56,15 @@ namespace Advent.UseCases.Day8
             }
         }
 
-        private static Vertex GetNewLocation(Vertex location, Vertex node)
+        private static GridCell GetNewLocation(GridCell location, GridCell node)
         {
             return new(location.Row + node.Row, location.Column + node.Column);
         }
 
         private static void ReplaceWithAnitNode(
             GridData copyOfGrid,
-            HashSet<Vertex> overlapNodes,
-            Vertex node1
+            HashSet<GridCell> overlapNodes,
+            GridCell node1
         )
         {
             if (copyOfGrid.IsValid(node1))
@@ -76,12 +76,12 @@ namespace Advent.UseCases.Day8
             }
         }
 
-        private static Vertex[] GetAntennasDifference(Vertex antenna1, Vertex antenna2)
+        private static GridCell[] GetAntennasDifference(GridCell antenna1, GridCell antenna2)
         {
             return
             [
-                new Vertex(antenna2.Row - antenna1.Row, antenna2.Column - antenna1.Column),
-                new Vertex(antenna1.Row - antenna2.Row, antenna1.Column - antenna2.Column)
+                new GridCell(antenna2.Row - antenna1.Row, antenna2.Column - antenna1.Column),
+                new GridCell(antenna1.Row - antenna2.Row, antenna1.Column - antenna2.Column)
             ];
         }
     }

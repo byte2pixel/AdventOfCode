@@ -132,4 +132,29 @@ internal static class TestData
 
     internal const string Day11TestData = "0 1 10 99 999\n";
     internal const string Day11TestData2 = "125 17\n";
+
+    /*
+    Day 12 Test data
+    RRRRIICCFF
+    RRRRIICCCF
+    VVRRRCCFFF
+    VVRCCCJFFF
+    VVVVCJJCFE
+    VVIVCCJJEE
+    VVIIICJJEE
+    MIIIIIJJEE
+    MIIISIJEEE
+    MMMISSJEEE
+    */
+    internal const string Day12TestData =
+        "RRRRIICCFF\n"
+        + "RRRRIICCCF\n"
+        + "VVRRRCCFFF\n"
+        + "VVRCCCJFFF\n"
+        + "VVVVCJJCFE\n"
+        + "VVIVCCJJEE\n"
+        + "VVIIICJJEE\n"
+        + "MIIIIIJJEE\n"
+        + "MIIISIJEEE\n"
+        + "MMMISSJEEE";
 }

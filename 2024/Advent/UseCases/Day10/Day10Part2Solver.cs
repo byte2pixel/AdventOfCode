@@ -10,7 +10,7 @@ public class Day10Part2Solver : IDay6Solver
     // trails start at 0 and end at 9 and must be visited in order
     private static readonly char[] trailPath = ['0', '1', '2', '3', '4', '5', '6', '7', '8', '9'];
 
-    private readonly Dictionary<Vertex, int> TrailheadScores = [];
+    private readonly Dictionary<GridCell, int> TrailheadScores = [];
 
     /// <summary>
     /// Basically the same as Part 1, but we're counting the number of times we reach the end of the trail
@@ -23,7 +23,7 @@ public class Day10Part2Solver : IDay6Solver
         Stopwatch sw = new();
         sw.Start();
         var trailheads = input.FindAll(trailPath[0]).ToArray();
-        var graph = new Queue<Node>();
+        var graph = new Queue<Day10Node>();
 
         foreach (var trailhead in trailheads)
         {
@@ -44,21 +44,21 @@ public class Day10Part2Solver : IDay6Solver
 
     private void EnqueueNextNode(
         GridData input,
-        Queue<Node> graph,
-        Vertex trailhead,
-        IEnumerable<Vertex> c,
+        Queue<Day10Node> graph,
+        GridCell trailhead,
+        IEnumerable<GridCell> cells,
         int nextNodeIndex = 1
     )
     {
-        foreach (var vertex in c)
+        foreach (var cell in cells)
         {
-            if (input[vertex] != trailPath[^1])
+            if (input[cell] != trailPath[^1])
             {
                 graph.Enqueue(
-                    new Node
+                    new Day10Node
                     {
                         TrailIndex = nextNodeIndex,
-                        Position = vertex,
+                        Position = cell,
                         Trailhead = trailhead
                     }
                 );
