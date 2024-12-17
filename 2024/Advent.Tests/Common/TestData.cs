@@ -133,19 +133,6 @@ internal static class TestData
     internal const string Day11TestData = "0 1 10 99 999\n";
     internal const string Day11TestData2 = "125 17\n";
 
-    /*
-    Day 12 Test data
-    RRRRIICCFF
-    RRRRIICCCF
-    VVRRRCCFFF
-    VVRCCCJFFF
-    VVVVCJJCFE
-    VVIVCCJJEE
-    VVIIICJJEE
-    MIIIIIJJEE
-    MIIISIJEEE
-    MMMISSJEEE
-    */
     internal const string Day12TestData =
         "RRRRIICCFF\n"
         + "RRRRIICCCF\n"
@@ -157,4 +144,38 @@ internal static class TestData
         + "MIIIIIJJEE\n"
         + "MIIISIJEEE\n"
         + "MMMISSJEEE";
+
+    /*
+    Button A: X+94, Y+34
+    Button B: X+22, Y+67
+    Prize: X=8400, Y=5400
+
+    Button A: X+26, Y+66
+    Button B: X+67, Y+21
+    Prize: X=12748, Y=12176
+
+    Button A: X+17, Y+86
+    Button B: X+84, Y+37
+    Prize: X=7870, Y=6450
+
+    Button A: X+69, Y+23
+    Button B: X+27, Y+71
+    Prize: X=18641, Y=10279
+    */
+    internal const string Day13TestData =
+        "Button A: X+94, Y+34\n"
+        + "Button B: X+22, Y+67\n"
+        + "Prize: X=8400, Y=5400\n"
+        + "\n"
+        + "Button A: X+26, Y+66\n"
+        + "Button B: X+67, Y+21\n"
+        + "Prize: X=12748, Y=12176\n"
+        + "\n"
+        + "Button A: X+17, Y+86\n"
+        + "Button B: X+84, Y+37\n"
+        + "Prize: X=7870, Y=6450\n"
+        + "\n"
+        + "Button A: X+69, Y+23\n"
+        + "Button B: X+27, Y+71\n"
+        + "Prize: X=18641, Y=10279";
 }
