@@ -64,8 +64,19 @@ public readonly struct GridCell(int row, int column) : IEquatable<GridCell>
     public static GridCell operator -(GridCell left, GridCell right) =>
         new(left.Row - right.Row, left.Column - right.Column);
 
+    public static GridCell operator *(GridCell left, int right) =>
+        new(left.Row * right, left.Column * right);
+
+    public static GridCell operator *(int left, GridCell right) => right * left;
+
+    public static GridCell operator /(GridCell left, int right) =>
+        new(left.Row / right, left.Column / right);
+
+    public static GridCell operator /(int left, GridCell right) => right / left;
+
     public static bool operator <(GridCell left, GridCell right) =>
-        left.Row < right.Row || left.Row == right.Row && left.Column < right.Column;
+        (left.Row < right.Row && left.Column < right.Column)
+        || left.Row == right.Row && left.Column < right.Column;
 
     public static bool operator >(GridCell left, GridCell right) =>
         left.Row > right.Row || left.Row == right.Row && left.Column > right.Column;
@@ -73,4 +84,6 @@ public readonly struct GridCell(int row, int column) : IEquatable<GridCell>
     public static bool operator <=(GridCell left, GridCell right) => left < right || left == right;
 
     public static bool operator >=(GridCell left, GridCell right) => left > right || left == right;
+
+    public override string ToString() => $"({Row}, {Column})";
 }
