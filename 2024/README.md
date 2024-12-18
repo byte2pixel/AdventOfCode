@@ -44,7 +44,7 @@ dotnet run -- day1 --part "Part 1"
 dotnet run -- day1 --part "Part 2"
 ```
 
-### Run Solutions (Option 1)
+### Run Solutions (Option 2)
 
 Example from `./2024/Advent` folder
 The key is the input folder with all the input files needs to be located in the current directory.
