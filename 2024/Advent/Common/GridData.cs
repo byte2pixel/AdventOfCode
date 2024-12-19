@@ -1,3 +1,5 @@
+using System.Text;
+
 namespace Advent.Common;
 
 public readonly ref struct GridData
@@ -31,6 +33,19 @@ public readonly ref struct GridData
     {
         get => _cells[position.row * Columns + position.column];
         set => _cells[position.row * Columns + position.column] = value;
+    }
+
+    public readonly IEnumerable<(GridCell, char)> this[IEnumerable<GridCell> cells]
+    {
+        get
+        {
+            List<(GridCell, char)> results = [];
+            foreach (var cell in cells)
+            {
+                results.Add((cell, this[cell]));
+            }
+            return results;
+        }
     }
 
     // return an entire row
@@ -115,6 +130,34 @@ public readonly ref struct GridData
         return results;
     }
 
+    internal IEnumerable<GridCell> FromTo(GridCell start, Direction direction, int? count = null)
+    {
+        count ??= direction switch
+        {
+            Direction.North => start.Row,
+            Direction.South => Rows - start.Row,
+            Direction.East => Columns - start.Column,
+            Direction.West => start.Column,
+            _ => throw new InvalidOperationException("Invalid direction")
+        };
+        var results = new List<GridCell>();
+        var current = start.Go(direction); // skip the start cell
+        for (int i = 0; i < count; i++)
+        {
+            if (!IsValid(current))
+            {
+                break;
+            }
+            if (this[current] == '#') // wall
+            {
+                break;
+            }
+            results.Add(current);
+            current = current.Go(direction);
+        }
+        return results;
+    }
+
     /// <summary>
     /// Returns the all cells that are adjacent to the cell.
     /// </summary>
@@ -143,5 +186,25 @@ public readonly ref struct GridData
             }
         }
         return [.. uniqueChars];
+    }
+
+    public string[] ToStringArray()
+    {
+        var result = new string[Rows];
+        for (int i = 0; i < Rows; i++)
+        {
+            result[i] = new string(this[i]);
+        }
+        return result;
+    }
+
+    public override string ToString()
+    {
+        var sb = new StringBuilder();
+        for (int i = 0; i < Rows; i++)
+        {
+            sb.AppendLine(this[i].ToString());
+        }
+        return sb.ToString();
     }
 }

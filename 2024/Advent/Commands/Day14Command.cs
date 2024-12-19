@@ -1,6 +1,5 @@
 using Advent.Common;
 using Advent.Common.Commands;
-using Advent.Common.Settings;
 using Advent.UseCases.Day14;
 using Spectre.Console;
 using Spectre.Console.Cli;
@@ -31,16 +30,5 @@ public class Day14Command(IFileReader reader, IAnsiConsole console)
             DisplayGrid(gridData);
         }
         return 0;
-    }
-
-    private void DisplayGrid(string[] gridData)
-    {
-        var grid = new Grid();
-        grid.AddColumn(new GridColumn());
-        foreach (var row in gridData)
-        {
-            grid.AddRow(new Text(row).Centered());
-        }
-        _console.Write(grid);
     }
 }
