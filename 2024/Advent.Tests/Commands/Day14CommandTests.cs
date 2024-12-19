@@ -1,4 +1,3 @@
-using Advent.Common.Settings;
 using Advent.UseCases.Day14;
 using Spectre.Console.Cli;
 

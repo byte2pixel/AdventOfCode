@@ -18,4 +18,15 @@ public abstract class AdventCommand<TSettings>(IFileReader reader, IAnsiConsole 
                 .AddChoices("Part 1", "Part 2")
         );
     }
+
+    protected virtual void DisplayGrid(string[] gridData)
+    {
+        var grid = new Grid();
+        grid.AddColumn(new GridColumn());
+        foreach (var row in gridData)
+        {
+            grid.AddRow(new Text(row).Centered());
+        }
+        _console.Write(grid);
+    }
 }
