@@ -47,6 +47,6 @@ public class Day15CommandTests
         );
         result.Should().Be(0);
         console.Output.Should().Contain("Day 15 Part 2");
-        console.Output.Should().Contain("The answer is 0");
+        console.Output.Should().Contain("The answer is 9021");
     }
 }

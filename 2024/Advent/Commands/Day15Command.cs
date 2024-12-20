@@ -13,15 +13,24 @@ public class Day15Command(IFileReader reader, IAnsiConsole console)
     public override async Task<int> ExecuteAsync(CommandContext context, AdventSettings settings)
     {
         var input = await _reader.ReadInputAsync("../input/day15input.txt");
-        var data = Day15Parser.Parse(input);
-
         var choice = settings.Part ?? PromptForPartChoice();
-        IDay15Solver solver = choice switch
+
+        Day15Data data;
+        IDay15Solver solver;
+        switch (choice)
         {
-            "Part 1" => new Day15Part1Solver(),
-            "Part 2" => new Day15Part2Solver(),
-            _ => throw new InvalidOperationException("Invalid choice")
-        };
+            case "Part 1":
+                data = Day15Parser.Parse(input);
+                solver = new Day15Part1Solver();
+                break;
+            case "Part 2":
+                data = Day15Parser.ResizeGrid(Day15Parser.Parse(input));
+                solver = new Day15Part2Solver();
+                break;
+            default:
+                _console.MarkupLine("[red]Invalid choice[/]");
+                return 1;
+        }
 
         (int result, string[]? gridData) = solver.Solve(data);
         _console.MarkupLine($"[bold green]Day 15 {choice} [/]");
