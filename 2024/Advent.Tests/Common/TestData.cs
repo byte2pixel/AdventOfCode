@@ -7,8 +7,9 @@ internal static class TestData
     internal const string Day5TestData =
         "47|53\n97|13\n97|61\n97|47\n75|29\n61|13\n75|53\n29|13\n97|29\n53|29\n61|53\n97|53\n61|29\n47|13\n75|47\n97|75\n47|61\n75|61\n47|29\n75|13\n53|13\n\n75,47,61,53,29\n97,61,53,29,13\n75,29,13\n75,97,47,61,53\n61,13,29\n97,13,75,29,47";
 
+    // csharpier-ignore
     internal const string Day6TestData =
-        "....#.....\n"
+          "....#.....\n"
         + ".........#\n"
         + "..........\n"
         + "..#.......\n"
@@ -30,8 +31,9 @@ internal static class TestData
         + "21037: 9 7 18 13\n"
         + "292: 11 6 16 20\n";
 
+    // csharpier-ignore
     internal const string Day8TestData =
-        "............\n"
+          "............\n"
         + "........0...\n"
         + ".....0......\n"
         + ".......0....\n"
@@ -94,8 +96,9 @@ internal static class TestData
         9
     ];
 
+    // csharpier-ignore
     internal const string Day10TestData =
-        "89010123\n"
+          "89010123\n"
         + "78121874\n"
         + "87430965\n"
         + "96549874\n"
@@ -103,8 +106,10 @@ internal static class TestData
         + "32019012\n"
         + "01329801\n"
         + "10456732";
+
+    // csharpier-ignore
     internal const string Day10TestData2 =
-        "...0...\n"
+          "...0...\n"
         + "...1...\n"
         + "...2...\n"
         + "6543456\n"
@@ -112,17 +117,9 @@ internal static class TestData
         + "8.....8\n"
         + "9.....9\n";
 
-    /*
-    ..90..9
-    ...1.98
-    ...2..7
-    6543456
-    765.987
-    876....
-    987....
-    */
+    // csharpier-ignore
     internal const string Day10TestData3 =
-        "..90..9\n"
+          "..90..9\n"
         + "...1.98\n"
         + "...2..7\n"
         + "6543456\n"
@@ -133,8 +130,9 @@ internal static class TestData
     internal const string Day11TestData = "0 1 10 99 999\n";
     internal const string Day11TestData2 = "125 17\n";
 
+    // csharpier-ignore
     internal const string Day12TestData =
-        "RRRRIICCFF\n"
+          "RRRRIICCFF\n"
         + "RRRRIICCCF\n"
         + "VVRRRCCFFF\n"
         + "VVRCCCJFFF\n"
@@ -228,4 +226,42 @@ internal static class TestData
         + "#######\n"
         + "\n"
         + "<vv<<^^<<^^\n";
+
+    // csharpier-ignore
+    public const string Day16TestData =
+          "###############\n"
+        + "#.......#....E#\n"
+        + "#.#.###.#.###.#\n"
+        + "#.....#.#...#.#\n"
+        + "#.###.#####.#.#\n"
+        + "#.#.#.......#.#\n"
+        + "#.#.#####.###.#\n"
+        + "#...........#.#\n"
+        + "###.#.#####.#.#\n"
+        + "#...#.....#.#.#\n"
+        + "#.#.#.###.#.#.#\n"
+        + "#.....#...#.#.#\n"
+        + "#.###.#.#.#.#.#\n"
+        + "#S..#.....#...#\n"
+        + "###############\n";
+
+    // csharpier-ignore
+    public const string Day16TestData2 =
+          "#################\n"
+        + "#...#...#...#..E#\n"
+        + "#.#.#.#.#.#.#.#.#\n"
+        + "#.#.#.#...#...#.#\n"
+        + "#.#.#.#.###.#.#.#\n"
+        + "#...#.#.#.....#.#\n"
+        + "#.#.#.#.#.#####.#\n"
+        + "#.#...#.#.#.....#\n"
+        + "#.#.#####.#.###.#\n"
+        + "#.#.#.......#...#\n"
+        + "#.#.###.#####.###\n"
+        + "#.#.#...#.....#.#\n"
+        + "#.#.#.#####.###.#\n"
+        + "#.#.#.........#.#\n"
+        + "#.#.#.#########.#\n"
+        + "#S#.............#\n"
+        + "#################\n";
 }
