@@ -216,4 +216,16 @@ internal static class TestData
         + "^<>^>v<>^^>vv<^v^v<vv>^<><v<^v>^^^>>>^^vvv^>vvv<>>>^<^>>>>>^<<^v>^vvv\n"
         + "<>^<><<v>v^^>>><<^^<>>^v^<v^vv<>v^<<>^<^v^v><^<<<><<^<v><v<>vv>>v><v^\n"
         + "<vv<>v^<<^\n";
+
+    // csharpier-ignore
+    public const string Day15Part2SmallTestData =
+          "#######\n"
+        + "#...#.#\n"
+        + "#.....#\n"
+        + "#..OO@#\n"
+        + "#..O..#\n"
+        + "#.....#\n"
+        + "#######\n"
+        + "\n"
+        + "<vv<<^^<<^^\n";
 }
