@@ -6,10 +6,10 @@ name: "2024 Advent of Code"
 on:
   push:
     branches: [ "main" ]
-    paths: ["/2024/**"]
+    paths: ["./2024/**"]
   pull_request:
     branches: [ "main" ]
-    paths: ["/2024/**"]
+    paths: ["./2024/**"]
 
 jobs:
   build:
