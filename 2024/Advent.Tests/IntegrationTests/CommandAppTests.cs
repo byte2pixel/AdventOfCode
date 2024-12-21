@@ -847,6 +847,77 @@ public class CommandAppTests : IClassFixture<TestFixture>
         result.Output.Should().Contain("Day 18 Part 1");
         result.Output.Should().Contain("The answer is 404");
     }
+
+    [Fact]
+    public async Task Day18Part2_IntegrationTest_Success()
+    {
+        // Arrange
+        var args = new string[] { "day18", "--part", "Part 2" };
+        var app = new CommandAppTester(_registrar);
+
+        app.Configure(config =>
+        {
+            config.PropagateExceptions();
+            config.ConfigureConsole(_console);
+            config.AddCommand<Day18Command>("day18");
+        });
+
+        // Act
+        var result = await app.RunAsync(args);
+
+        // Assert
+        result.ExitCode.Should().Be(0);
+        result.Output.Should().Contain("Day 18 Part 2");
+        result.Output.Should().Contain("The answer is 27,60");
+    }
+    #endregion
+
+    #region Day19
+    [Fact]
+    public async Task Day19Part1_IntegrationTest_Success()
+    {
+        // Arrange
+        var args = new string[] { "day19", "--part", "Part 1" };
+        var app = new CommandAppTester(_registrar);
+
+        app.Configure(config =>
+        {
+            config.PropagateExceptions();
+            config.ConfigureConsole(_console);
+            config.AddCommand<Day19Command>("day19");
+        });
+
+        // Act
+        var result = await app.RunAsync(args);
+
+        // Assert
+        result.ExitCode.Should().Be(0);
+        result.Output.Should().Contain("Day 19 Part 1");
+        result.Output.Should().Contain("The answer is 300");
+    }
+
+    [Fact]
+    public async Task Day19Part2_IntegrationTest_Success()
+    {
+        // Arrange
+        var args = new string[] { "day19", "--part", "Part 2" };
+        var app = new CommandAppTester(_registrar);
+
+        app.Configure(config =>
+        {
+            config.PropagateExceptions();
+            config.ConfigureConsole(_console);
+            config.AddCommand<Day19Command>("day19");
+        });
+
+        // Act
+        var result = await app.RunAsync(args);
+
+        // Assert
+        result.ExitCode.Should().Be(0);
+        result.Output.Should().Contain("Day 19 Part 2");
+        result.Output.Should().Contain("The answer is 624802218898092");
+    }
     #endregion
 }
 

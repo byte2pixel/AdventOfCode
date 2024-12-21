@@ -298,4 +298,16 @@ internal static class TestData
         + "0,5\n"
         + "1,6\n"
         + "2,0\n";
+
+    public const string Day19TestData =
+        "r, wr, b, g, bwu, rb, gb, br\n"
+        + "\n"
+        + "brwrr\n"
+        + "bggr\n"
+        + "gbbr\n"
+        + "rrbgbr\n"
+        + "ubwu\n"
+        + "bwurrg\n"
+        + "brgr\n"
+        + "bbrgwb\n\n";
 }
