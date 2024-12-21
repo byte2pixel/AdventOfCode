@@ -264,4 +264,11 @@ internal static class TestData
         + "#.#.#.#########.#\n"
         + "#S#.............#\n"
         + "#################\n";
+
+    public const string Day17TestData =
+        "Register A: 729\n"
+        + "Register B: 0\n"
+        + "Register C: 0\n"
+        + "\n"
+        + "Program: 0,1,5,4,3,0\n";
 }
