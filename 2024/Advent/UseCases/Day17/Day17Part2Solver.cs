@@ -7,7 +7,7 @@ public class Day17Part2Solver : IDay17Solver
     public string Solve(Day17Data data)
     {
         var prog1 = Split(data.OriginalProgram);
-        List<long> validAValues = [0];
+        List<long> validAValues = [0]; // start with 0
         var reverseProg = prog1.AsEnumerable().Reverse().ToList();
         for (int i = 0; i < reverseProg.Count; i++)
         {
