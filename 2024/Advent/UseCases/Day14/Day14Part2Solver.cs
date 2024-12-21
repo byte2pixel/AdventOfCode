@@ -1,5 +1,4 @@
 using System.Diagnostics;
-using Advent.Common;
 using Advent.Extensions;
 using Spectre.Console;
 

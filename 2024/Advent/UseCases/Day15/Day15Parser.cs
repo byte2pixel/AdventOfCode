@@ -1,5 +1,4 @@
 using Advent.Common;
-using Spectre.Console;
 
 namespace Advent.UseCases.Day15;
 
