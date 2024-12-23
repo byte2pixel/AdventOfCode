@@ -41,6 +41,9 @@ public readonly struct GridCell(int row, int column) : IEquatable<GridCell>
         };
     }
 
+    public int ManhattanDistance(GridCell other) =>
+        Math.Abs(Row - other.Row) + Math.Abs(Column - other.Column);
+
     public bool Equals(GridCell other)
     {
         return Row == other.Row && Column == other.Column;
