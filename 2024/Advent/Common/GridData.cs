@@ -61,6 +61,12 @@ public readonly ref struct GridData
 
     public readonly bool IsValid(GridCell cell, Direction direction) => IsValid(cell.Go(direction));
 
+    /// <summary>
+    /// Find the first cell that contains the specified character.
+    /// </summary>
+    /// <param name="c"></param>
+    /// <returns></returns>
+    /// <exception cref="InvalidOperationException"></exception>
     public readonly GridCell Find(char c)
     {
         for (int i = 0; i < Rows; i++)
@@ -74,6 +80,11 @@ public readonly ref struct GridData
         throw new InvalidOperationException($"No {c} position found");
     }
 
+    /// <summary>
+    /// Find all cells that contain the specified character.
+    /// </summary>
+    /// <param name="c">The character to search for</param>
+    /// <returns>All cells that contain the character</returns>
     internal IEnumerable<GridCell> FindAll(char c)
     {
         var results = new List<GridCell>();
@@ -91,10 +102,38 @@ public readonly ref struct GridData
     }
 
     /// <summary>
+    /// Find all cells that are within the specified distance from the start cell.<br/>
+    /// Optionally, the cells can contain the specified character.
+    /// </summary>
+    /// <param name="start">The starting cell</param>
+    /// <param name="distance">The maximum distance</param>
+    /// <param name="c">Optional character(s) to search for</param>
+    /// <returns>All cells that match the criteria</returns>
+    internal IEnumerable<GridCell> FindAll(GridCell start, int distance, char[]? c = null)
+    {
+        var results = new List<GridCell>();
+        for (int row = 0; row < Rows; row++)
+        {
+            for (int column = 0; column < Columns; column++)
+            {
+                var end = new GridCell(row, column);
+                if (
+                    start.ManhattanDistance(end) <= distance
+                    && (c == null || c.Contains(this[end]))
+                )
+                {
+                    results.Add(end);
+                }
+            }
+        }
+        return results;
+    }
+
+    /// <summary>
     /// Returns the adjacent cells that are within the grid.
     /// </summary>
     /// <param name="cell"></param>
-    /// <returns></returns>
+    /// <returns>All adjacent cells</returns>
     internal IEnumerable<GridCell> Adjacent(GridCell cell)
     {
         var results = new List<GridCell>();
@@ -130,9 +169,19 @@ public readonly ref struct GridData
         return results;
     }
 
-    internal IEnumerable<GridCell> FromTo(GridCell start, Direction direction, int? count = null)
+    /// <summary>
+    /// Returns the cells from the start cell in the specified direction.
+    /// Optionally, the distance can be specified or it will go to the edge of the grid.
+    /// Stops if it encounters a wall '#'.
+    /// </summary>
+    /// <param name="start"></param>
+    /// <param name="direction"></param>
+    /// <param name="distance"></param>
+    /// <returns></returns>
+    /// <exception cref="InvalidOperationException"></exception>
+    internal IEnumerable<GridCell> FromTo(GridCell start, Direction direction, int? distance = null)
     {
-        count ??= direction switch
+        distance ??= direction switch
         {
             Direction.North => start.Row,
             Direction.South => Rows - start.Row,
@@ -142,7 +191,7 @@ public readonly ref struct GridData
         };
         var results = new List<GridCell>();
         var current = start.Go(direction); // skip the start cell
-        for (int i = 0; i < count; i++)
+        for (int i = 0; i < distance; i++)
         {
             if (!IsValid(current))
             {
@@ -159,7 +208,7 @@ public readonly ref struct GridData
     }
 
     /// <summary>
-    /// Returns the all cells that are adjacent to the cell.
+    /// Returns the all cells that are adjacent to the cell, including those that are outside the grid.
     /// </summary>
     /// <param name="cell"></param>
     /// <returns></returns>

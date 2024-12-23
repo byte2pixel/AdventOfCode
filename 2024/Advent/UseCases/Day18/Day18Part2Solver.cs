@@ -53,7 +53,7 @@ public class Day18Part2Solver(int rows, int columns) : IDay18Solver
             }
             try
             {
-                Day18Helper.FindPathFromTopLeftToBottomRight(grid);
+                Day18Helper.FindPathFromTo(grid);
                 left = mid + 1;
             }
             catch (InvalidOperationException)
