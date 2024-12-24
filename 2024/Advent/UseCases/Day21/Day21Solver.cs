@@ -9,7 +9,7 @@ using Keypad = System.Collections.Generic.Dictionary<Advent.Common.GridCell, cha
 
 namespace Advent.UseCases.Day21;
 
-public class Day21Part1Solver(int depth) : IDay21Solver
+public class Day21Solver(int depth) : IDay21Solver
 {
     private readonly int _depth = depth;
 
