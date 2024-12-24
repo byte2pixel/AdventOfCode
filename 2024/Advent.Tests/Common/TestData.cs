@@ -328,4 +328,6 @@ internal static class TestData
         + "#.#.#.#.#.#.###\n"
         + "#...#...#...###\n"
         + "###############\n";
+
+    public const string Day21TestData = "029A\n" + "980A\n" + "179A\n" + "456A\n" + "379A\n";
 }
