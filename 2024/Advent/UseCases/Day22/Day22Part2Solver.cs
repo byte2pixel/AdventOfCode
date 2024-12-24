@@ -5,10 +5,24 @@ using PriceSequence = (int, int, int, int);
 
 namespace Advent.UseCases.Day22;
 
-public class Day22Part2Solver(int simulations) : IDay21Solver
+public class Day22Part2Solver : IDay21Solver
 {
+    private const int SEQUENCE_LENGTH = 4;
+    private const int MOD_VALUE = 10;
+
+    private readonly int _simulations;
     private readonly Dictionary<PriceSequence, int> _priceMap = [];
     private readonly HashSet<PriceSequence> _visited = [];
+
+    public Day22Part2Solver(int simulations)
+    {
+        if (simulations <= SEQUENCE_LENGTH)
+            throw new ArgumentException(
+                "Simulations must be greater than sequence length",
+                nameof(simulations)
+            );
+        _simulations = simulations;
+    }
 
     public string Solve(string[] input)
     {
@@ -31,60 +45,30 @@ public class Day22Part2Solver(int simulations) : IDay21Solver
     /// Processes the number by generating the prices and price differences and filling the price map.
     /// <param name="number"></param>
     /// </summary>
-    private void ProcessNumber(long number)
+    private void ProcessNumber(long seed)
     {
-        int[] prices = new int[simulations + 1];
-        int[] priceDiffs = new int[simulations];
-        FillPrices(simulations, number, prices, priceDiffs);
-        FillPriceMap(simulations, prices, priceDiffs);
-    }
-
-    /// <summary>
-    /// Fills the prices and price differences arrays with the generated prices and price differences.
-    /// </summary>
-    /// <param name="simulations"></param>
-    /// <param name="number"></param>
-    /// <param name="prices"></param>
-    /// <param name="priceDiffs"></param>
-    private static void FillPrices(int simulations, long number, int[] prices, int[] priceDiffs)
-    {
-        prices[0] = (int)number % 10;
-        for (int i = 1; i < simulations; i++)
+        var prices = GeneratePrices(seed).ToArray();
+        var diffs = prices.Skip(1).Zip(prices, (curr, prev) => curr - prev).ToArray();
+        for (int i = 0; i <= diffs.Length - SEQUENCE_LENGTH; i++)
         {
-            number = Day22SecrectNumber.GenerateSecretNumber(number);
-            prices[i] = (int)number % 10;
-            priceDiffs[i - 1] = prices[i] - prices[i - 1];
-        }
-    }
-
-    /// <summary>
-    /// Fills the price map with the price sequance and adds the price at that sequence.
-    /// </summary>
-    /// <param name="simulations"></param>
-    /// <param name="prices"></param>
-    /// <param name="priceDiffs"></param>
-    private void FillPriceMap(int simulations, int[] prices, int[] priceDiffs)
-    {
-        for (int i = 0; i < simulations - 4; i++)
-        {
-            PriceSequence sequence = (
-                priceDiffs[i],
-                priceDiffs[i + 1],
-                priceDiffs[i + 2],
-                priceDiffs[i + 3]
-            );
+            var sequence = new PriceSequence(diffs[i], diffs[i + 1], diffs[i + 2], diffs[i + 3]);
 
             if (_visited.Add(sequence))
             {
-                if (!_priceMap.TryGetValue(sequence, out _))
-                {
-                    _priceMap[sequence] = prices[i + 4];
-                }
-                else
-                {
-                    _priceMap[sequence] += prices[i + 4];
-                }
+                _priceMap[sequence] =
+                    _priceMap.GetValueOrDefault(sequence) + prices[i + SEQUENCE_LENGTH];
             }
+        }
+    }
+
+    private IEnumerable<int> GeneratePrices(long seed)
+    {
+        yield return (int)(seed % MOD_VALUE);
+
+        for (int i = 1; i < _simulations; i++)
+        {
+            seed = Day22SecrectNumber.GenerateSecretNumber(seed);
+            yield return (int)(seed % MOD_VALUE);
         }
     }
 }
