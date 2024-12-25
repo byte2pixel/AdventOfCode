@@ -331,4 +331,38 @@ internal static class TestData
 
     public const string Day21TestData = "029A\n" + "980A\n" + "179A\n" + "456A\n" + "379A\n";
     public const string Day22TestData = "1\n" + "10\n" + "100\n" + "2024\n";
+
+    public const string Day23TestData =
+        "kh-tc\n"
+        + "qp-kh\n"
+        + "de-cg\n"
+        + "ka-co\n"
+        + "yn-aq\n"
+        + "qp-ub\n"
+        + "cg-tb\n"
+        + "vc-aq\n"
+        + "tb-ka\n"
+        + "wh-tc\n"
+        + "yn-cg\n"
+        + "kh-ub\n"
+        + "ta-co\n"
+        + "de-co\n"
+        + "tc-td\n"
+        + "tb-wq\n"
+        + "wh-td\n"
+        + "ta-ka\n"
+        + "td-qp\n"
+        + "aq-cg\n"
+        + "wq-ub\n"
+        + "ub-vc\n"
+        + "de-ta\n"
+        + "wq-aq\n"
+        + "wq-vc\n"
+        + "wh-yn\n"
+        + "ka-de\n"
+        + "kh-ta\n"
+        + "co-tc\n"
+        + "wh-qp\n"
+        + "tb-vc\n"
+        + "td-yn\n";
 }
