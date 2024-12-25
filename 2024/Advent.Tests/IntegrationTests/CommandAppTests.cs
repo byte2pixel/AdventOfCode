@@ -1063,6 +1063,54 @@ public class CommandAppTests : IClassFixture<TestFixture>
         result.Output.Should().Contain("The answer is 1570");
     }
     #endregion
+
+    #region Day23
+    [Fact]
+    public async Task Day23Part1_IntegrationTest_Success()
+    {
+        // Arrange
+        var args = new string[] { "day23", "--part", "Part 1" };
+        var app = new CommandAppTester(_registrar);
+
+        app.Configure(config =>
+        {
+            config.PropagateExceptions();
+            config.ConfigureConsole(_console);
+            config.AddCommand<Day23Command>("day23");
+        });
+
+        // Act
+        var result = await app.RunAsync(args);
+
+        // Assert
+        result.ExitCode.Should().Be(0);
+        result.Output.Should().Contain("Day 23 Part 1");
+        result.Output.Should().Contain("The answer is 1227");
+    }
+
+    [Fact]
+    public async Task Day23Part2_IntegrationTest_Success()
+    {
+        // Arrange
+        var args = new string[] { "day23", "--part", "Part 2" };
+        var app = new CommandAppTester(_registrar);
+
+        app.Configure(config =>
+        {
+            config.PropagateExceptions();
+            config.ConfigureConsole(_console);
+            config.AddCommand<Day23Command>("day23");
+        });
+
+        // Act
+        var result = await app.RunAsync(args);
+
+        // Assert
+        result.ExitCode.Should().Be(0);
+        result.Output.Should().Contain("Day 23 Part 2");
+        result.Output.Should().Contain("The answer is cl,df,ft,ir,iy,ny,qp,rb,sh,sl,sw,wm,wy");
+    }
+    #endregion
 }
 
 public class TestFixture
