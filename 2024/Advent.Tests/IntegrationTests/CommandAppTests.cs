@@ -1111,6 +1111,55 @@ public class CommandAppTests : IClassFixture<TestFixture>
         result.Output.Should().Contain("The answer is cl,df,ft,ir,iy,ny,qp,rb,sh,sl,sw,wm,wy");
     }
     #endregion
+
+    #region Day24
+    [Fact]
+    public async Task Day24Part1_IntegrationTest_Success()
+    {
+        // Arrange
+        var args = new string[] { "day24", "--part", "Part 1" };
+        var app = new CommandAppTester(_registrar);
+
+        app.Configure(config =>
+        {
+            config.PropagateExceptions();
+            config.ConfigureConsole(_console);
+            config.AddCommand<Day24Command>("day24");
+        });
+
+        // Act
+        var result = await app.RunAsync(args);
+
+        // Assert
+        result.ExitCode.Should().Be(0);
+        result.Output.Should().Contain("Day 24 Part 1");
+        result.Output.Should().Contain("The answer is 58740594706150");
+    }
+
+    [Fact]
+    public async Task Day24Part2_IntegrationTest_Success()
+    {
+        // Arrange
+        var args = new string[] { "day24", "--part", "Part 2" };
+        var app = new CommandAppTester(_registrar);
+
+        app.Configure(config =>
+        {
+            config.PropagateExceptions();
+            config.ConfigureConsole(_console);
+            config.AddCommand<Day24Command>("day24");
+        });
+
+        // Act
+        var result = await app.RunAsync(args);
+
+        // Assert
+        result.ExitCode.Should().Be(0);
+        result.Output.Should().Contain("Day 24 Part 2");
+        result.Output.Should().Contain("The answer is cvh,dbb,hbk,kvn,tfn,z14,z18,z23");
+    }
+
+    #endregion
 }
 
 public class TestFixture
