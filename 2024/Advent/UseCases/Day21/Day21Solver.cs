@@ -30,7 +30,7 @@ internal class Day21Solver(int depth) : IDay21Solver
             result += mutiplier * cost;
         }
         sw.Stop();
-        AnsiConsole.WriteLine($"Elapsed time: {sw.Elapsed.TotalMilliseconds} ms");
+        AnsiConsole.WriteLine($"Elapsed: {sw.Elapsed.TotalMilliseconds} ms");
         return result.ToString();
     }
 

@@ -53,7 +53,7 @@ internal class Day11Solver(int blinks = 25) : IDay11Solver
         sw.Stop();
         // Calculate total stone count
         long totalStoneCount = stoneDistribution.Values.Sum();
-        AnsiConsole.WriteLine($"Elapsed time: {sw.Elapsed.TotalMilliseconds} ms");
+        AnsiConsole.WriteLine($"Elapsed: {sw.Elapsed.TotalMilliseconds} ms");
 
         return totalStoneCount;
     }

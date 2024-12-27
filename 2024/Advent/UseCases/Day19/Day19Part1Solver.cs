@@ -31,7 +31,7 @@ internal class Day19Part1Solver : IDay19Solver
         );
 
         stopwatch.Stop();
-        AnsiConsole.WriteLine($"Elapsed time: {stopwatch.Elapsed.TotalMilliseconds} ms");
+        AnsiConsole.WriteLine($"Elapsed: {stopwatch.Elapsed.TotalMilliseconds} ms");
         return constructed.ToString();
     }
 

@@ -37,7 +37,7 @@ internal class Day22Part2Solver : IDay21Solver
         // Get the maximum value from the price map, that is the answer.
         var max = _priceMap.Values.Max();
         sw.Stop();
-        AnsiConsole.WriteLine($"Elapsed time: {sw.Elapsed.TotalMilliseconds} ms");
+        AnsiConsole.WriteLine($"Elapsed: {sw.Elapsed.TotalMilliseconds} ms");
         return max.ToString();
     }
 

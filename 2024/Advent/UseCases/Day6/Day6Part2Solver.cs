@@ -19,7 +19,7 @@ internal class Day6Part2Solver : IDay6Solver
         _startingDirection = Direction.North;
         Move(input);
         sw.Stop();
-        AnsiConsole.WriteLine($"Elapsed time: {sw.Elapsed.TotalMilliseconds} ms");
+        AnsiConsole.WriteLine($"Elapsed: {sw.Elapsed.TotalMilliseconds} ms");
         return _infiniteLoopCount;
     }
 

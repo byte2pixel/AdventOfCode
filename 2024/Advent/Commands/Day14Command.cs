@@ -23,12 +23,10 @@ public class Day14Command(IFileReader reader, IAnsiConsole console)
         };
 
         (int result, string[]? gridData) = solver.Solve(data, settings);
+        if (gridData is not null)
+            DisplayGrid(gridData);
         _console.MarkupLine($"[bold green]Day 14 {choice} [/]");
         _console.MarkupLine($"The answer is [bold yellow]{result}[/]");
-        if (gridData is not null)
-        {
-            DisplayGrid(gridData);
-        }
         return 0;
     }
 }

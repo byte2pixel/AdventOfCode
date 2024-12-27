@@ -21,7 +21,7 @@ internal class Day23Part2Solver : IDay23Solver
         maxClique.Sort();
         // join maxClique using comma as separator
         var password = string.Join(",", maxClique);
-        AnsiConsole.WriteLine($"Elapsed time: {sw.Elapsed.TotalMilliseconds} ms");
+        AnsiConsole.WriteLine($"Elapsed: {sw.Elapsed.TotalMilliseconds} ms");
         return password;
     }
 }

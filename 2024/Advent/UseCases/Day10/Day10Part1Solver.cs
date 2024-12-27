@@ -42,9 +42,9 @@ internal class Day10Part1Solver : IDay6Solver
             var c = input.Adjacent(node.Position, trailPath[node.TrailIndex + 1]);
             EnqueueNextNode(input, graph, node.Trailhead, c, node.TrailIndex + 1);
         }
-        sw.Stop(); // Averages 6 ms
-        AnsiConsole.WriteLine($"FindAll took {sw.Elapsed.TotalMilliseconds} ms");
         int result = TrailheadScores.Values.Select(x => x.Count).Sum();
+        sw.Stop(); // Averages 6 ms
+        AnsiConsole.WriteLine($"Elapsed: {sw.Elapsed.TotalMilliseconds} ms");
         return result;
     }
 

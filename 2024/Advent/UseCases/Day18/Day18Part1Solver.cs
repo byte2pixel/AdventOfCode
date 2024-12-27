@@ -18,7 +18,7 @@ internal class Day18Part1Solver(int rows, int columns, int bytesToFall = 1024) :
         GridData grid = BuildGridData(data);
         result = Day18Helper.FindPathFromTo(grid).Count - 1; // -1 because the start cell is included
         sw.Stop();
-        AnsiConsole.WriteLine($"Elapsed time: {sw.Elapsed.TotalMilliseconds} ms");
+        AnsiConsole.WriteLine($"Elapsed: {sw.Elapsed.TotalMilliseconds} ms");
         return (result.ToString(), grid.ToString());
     }
 

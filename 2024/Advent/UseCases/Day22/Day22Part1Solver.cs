@@ -19,7 +19,7 @@ internal class Day22Part1Solver(int simulations) : IDay21Solver
             result += ProcessNumber(number, _simulations);
         }
         sw.Stop();
-        AnsiConsole.WriteLine($"Elapsed time: {sw.Elapsed.TotalMilliseconds} ms");
+        AnsiConsole.WriteLine($"Elapsed: {sw.Elapsed.TotalMilliseconds} ms");
         return result.ToString();
     }
 

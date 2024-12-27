@@ -30,7 +30,7 @@ internal class Day18Part2Solver(int rows, int columns) : IDay18Solver
             catch (InvalidOperationException)
             {
                 sw.Stop();
-                AnsiConsole.WriteLine($"Elapsed time: {sw.Elapsed.TotalMilliseconds} ms");
+                AnsiConsole.WriteLine($"Elapsed: {sw.Elapsed.TotalMilliseconds} ms");
                 return ($"{cell.Column},{cell.Row}", grid.ToString());
             }
         }
@@ -64,7 +64,7 @@ internal class Day18Part2Solver(int rows, int columns) : IDay18Solver
             grid = BuildGridData(); // reset the grid
         }
         sw.Stop();
-        AnsiConsole.WriteLine($"Elapsed time: {sw.Elapsed.TotalMilliseconds} ms");
+        AnsiConsole.WriteLine($"Elapsed: {sw.Elapsed.TotalMilliseconds} ms");
         return ($"{firstFail.Column},{firstFail.Row}", grid.ToString());
     }
 

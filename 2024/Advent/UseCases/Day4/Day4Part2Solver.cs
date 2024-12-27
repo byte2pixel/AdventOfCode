@@ -23,7 +23,7 @@ internal class Day4Part2Solver : IDay4Solver
         int count = FindWordInXShape(data.FlatCrossword, data.Rows, data.Columns);
 
         stopwatch.Stop(); // Average time is 5.8 - 6.2ms, Parallel slows it down for this data size
-        AnsiConsole.WriteLine($"Elapsed time: {stopwatch.Elapsed.TotalMilliseconds} ms");
+        AnsiConsole.WriteLine($"Elapsed: {stopwatch.Elapsed.TotalMilliseconds} ms");
         return count;
     }
 

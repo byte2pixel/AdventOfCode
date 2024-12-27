@@ -42,7 +42,7 @@ internal class Day20Solver(int savingsThreshold, int cheatDistance) : IDay6Solve
         ProcessPossibleCheats(possibleCheats, cheatCounter, originalWithIndex);
         int result = cheatCounter.Where(x => x.Key >= _savingsThreshold).Sum(x => x.Value);
         sw.Stop();
-        AnsiConsole.WriteLine($"Elapsed time: {sw.Elapsed.TotalMilliseconds} ms");
+        AnsiConsole.WriteLine($"Elapsed: {sw.Elapsed.TotalMilliseconds} ms");
         return result;
     }
 

@@ -11,7 +11,7 @@ internal class Day24Part1Solver : IDay24Solver
         sw.Start();
         var result = input.GetOutputNumber();
         sw.Stop();
-        AnsiConsole.WriteLine($"Execution time: {sw.Elapsed.TotalMilliseconds} ms");
+        AnsiConsole.WriteLine($"Elapsed: {sw.Elapsed.TotalMilliseconds} ms");
         return result.ToString();
     }
 }

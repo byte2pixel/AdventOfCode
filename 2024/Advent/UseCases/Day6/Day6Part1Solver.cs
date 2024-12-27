@@ -19,7 +19,7 @@ internal class Day6Part1Solver : IDay6Solver
         Move(input);
         var count = input.Count('X');
         sw.Stop(); // Average 2.75 ms
-        AnsiConsole.WriteLine($"Elapsed time: {sw.Elapsed.TotalMilliseconds} ms");
+        AnsiConsole.WriteLine($"Elapsed: {sw.Elapsed.TotalMilliseconds} ms");
         return count;
     }
 

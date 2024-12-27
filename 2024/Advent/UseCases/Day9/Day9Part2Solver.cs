@@ -36,7 +36,7 @@ internal class Day9Part2Solver : IDay9Solver
 
         ulong hash = ComputeHash(input);
         sw.Stop(); // averages 760 ms
-        AnsiConsole.WriteLine($"Elapsed time: {sw.Elapsed.TotalMilliseconds} ms");
+        AnsiConsole.WriteLine($"Elapsed: {sw.Elapsed.TotalMilliseconds} ms");
         return hash;
     }
 

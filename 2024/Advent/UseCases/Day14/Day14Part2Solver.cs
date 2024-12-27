@@ -26,7 +26,7 @@ internal class Day14Part2Solver : IDay14Solver
         }
         string[]? grid = CreateGrid(data, maximumRows, maximumColumns);
         sw.Stop();
-        AnsiConsole.WriteLine($"Elapsed time: {sw.Elapsed.TotalMilliseconds} ms");
+        AnsiConsole.WriteLine($"Elapsed: {sw.Elapsed.TotalMilliseconds} ms");
         return (iterationCount * seconds, grid);
     }
 

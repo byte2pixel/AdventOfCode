@@ -16,7 +16,7 @@ internal class Day14Part1Solver : IDay14Solver
         data.MoveRobots(seconds, maximumRows, maximumColumns);
         int safteyFactor = CalculateSafetyFactor(data, maximumRows, maximumColumns);
         sw.Stop();
-        AnsiConsole.WriteLine($"Elapsed time: {sw.Elapsed.TotalMilliseconds} ms");
+        AnsiConsole.WriteLine($"Elapsed: {sw.Elapsed.TotalMilliseconds} ms");
         return (safteyFactor, null);
     }
 

@@ -12,7 +12,7 @@ internal class Day25Part1Solver : IDay25Solver
         sw.Start();
         int uniqueKeyLockCombinations = FindAllUniqueKeyLockCombinations(input.locks, input.keys);
         sw.Stop();
-        AnsiConsole.WriteLine($"Execution time: {sw.Elapsed.TotalMilliseconds} ms");
+        AnsiConsole.WriteLine($"Elapsed: {sw.Elapsed.TotalMilliseconds} ms");
         return uniqueKeyLockCombinations.ToString();
     }
 

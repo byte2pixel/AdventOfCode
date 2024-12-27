@@ -37,7 +37,7 @@ internal class Day13Part1Solver(int? maxIterations = 100, long? offset = null) :
             result += FindCheapestPath(item.Points, item.Destination, _maxIterations);
         }
         sw.Stop(); // Averages 0.6 ms for part 1, 1.1 ms for part 2
-        AnsiConsole.WriteLine($"Elapsed time: {sw.Elapsed.TotalMilliseconds} ms");
+        AnsiConsole.WriteLine($"Elapsed: {sw.Elapsed.TotalMilliseconds} ms");
         return result;
     }
 

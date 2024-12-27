@@ -16,7 +16,7 @@ internal class Day5Part1Solver : IDay5Solver
             result += ProcessPagesAndRules(data.PagesToPrint.ElementAt(i), data.PrintRules);
         }
         stopwatch.Stop(); // Averages 1.6 ms
-        AnsiConsole.WriteLine($"Elapsed time: {stopwatch.Elapsed.TotalMilliseconds} ms");
+        AnsiConsole.WriteLine($"Elapsed: {stopwatch.Elapsed.TotalMilliseconds} ms");
         return result;
     }
 

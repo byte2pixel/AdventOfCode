@@ -18,7 +18,7 @@ internal class Day23Part1Solver : IDay23Solver
         var count = _cliques.Count(clique =>
             clique.Count == 3 && clique.Any(node => node.StartsWith('t'))
         );
-        AnsiConsole.WriteLine($"Elapsed time: {sw.Elapsed.TotalMilliseconds} ms");
+        AnsiConsole.WriteLine($"Elapsed: {sw.Elapsed.TotalMilliseconds} ms");
         return count.ToString();
     }
 }
