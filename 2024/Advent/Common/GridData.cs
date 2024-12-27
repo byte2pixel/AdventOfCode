@@ -2,9 +2,9 @@ using System.Text;
 
 namespace Advent.Common;
 
-public readonly ref struct GridData
+public readonly struct GridData : IEquatable<GridData>
 {
-    private readonly Span<char> _cells;
+    private readonly char[] _cells;
     public readonly int Rows;
     public readonly int Columns;
 
@@ -15,7 +15,30 @@ public readonly ref struct GridData
         Columns = columns;
     }
 
-    public char[] ToArray() => _cells.ToArray();
+    public GridData(string[] table)
+    {
+        if (table.Length == 0)
+        {
+            throw new ArgumentException("Table is empty");
+        }
+        if (table.Any(x => x.Length != table[0].Length))
+        {
+            throw new ArgumentException("Rows are not the same length");
+        }
+        Rows = table.Length;
+        Columns = table[0].Length;
+        _cells = new char[Rows * Columns];
+        for (int i = 0; i < Rows; i++)
+        {
+            var row = table[i];
+            for (int j = 0; j < Columns; j++)
+            {
+                _cells[i * Columns + j] = row[j];
+            }
+        }
+    }
+
+    public char[] ToArray() => [.. _cells];
 
     public readonly char this[GridCell cell]
     {
@@ -49,9 +72,9 @@ public readonly ref struct GridData
     }
 
     // return an entire row
-    public readonly ReadOnlySpan<char> this[int row] => _cells.Slice(row * Columns, Columns);
+    public readonly ReadOnlySpan<char> this[int row] => _cells.AsSpan(row * Columns, Columns);
 
-    public readonly int Count(char c) => _cells.Count(c);
+    public readonly int Count(char c) => _cells.Count(x => x == c);
 
     public readonly int Length => _cells.Length;
 
@@ -256,4 +279,28 @@ public readonly ref struct GridData
         }
         return sb.ToString();
     }
+
+    public override int GetHashCode() => HashCode.Combine(Rows, Columns, _cells);
+
+    public override bool Equals(object? obj) => obj is GridData data && Equals(data);
+
+    public bool Equals(GridData other)
+    {
+        if (Rows != other.Rows || Columns != other.Columns)
+        {
+            return false;
+        }
+        for (int i = 0; i < Rows; i++)
+        {
+            if (!this[i].SequenceEqual(other[i]))
+            {
+                return false;
+            }
+        }
+        return true;
+    }
+
+    public static bool operator ==(GridData left, GridData right) => left.Equals(right);
+
+    public static bool operator !=(GridData left, GridData right) => !left.Equals(right);
 }

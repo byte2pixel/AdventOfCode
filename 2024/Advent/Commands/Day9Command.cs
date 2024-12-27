@@ -13,8 +13,7 @@ public class Day9Command(IFileReader reader, IAnsiConsole console)
     public override async Task<int> ExecuteAsync(CommandContext context, AdventSettings settings)
     {
         var input = await _reader.ReadInputAsync("../input/day9input.txt");
-        var parser = new Day9Parser();
-        var data = parser.Parse(input);
+        var data = Day9Parser.Parse(input);
 
         var choice = settings.Part ?? PromptForPartChoice();
         IDay9Solver solver = choice switch

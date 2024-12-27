@@ -1,6 +1,6 @@
 namespace Advent.UseCases.Day7;
 
-public class Day7Part2Solver : IDay7Solver
+internal class Day7Part2Solver : IDay7Solver
 {
     public ulong Solve((ulong, uint[])[] input)
     {

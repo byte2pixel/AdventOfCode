@@ -20,6 +20,7 @@ internal class Day24Part2Solver : IDay24Solver
         a.Sort();
         var result = string.Join(',', a);
         sw.Stop();
+        AnsiConsole.WriteLine($"Execution time: {sw.Elapsed.TotalMilliseconds} ms");
         return result;
     }
 

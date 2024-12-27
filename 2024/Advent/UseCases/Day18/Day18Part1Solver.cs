@@ -4,7 +4,7 @@ using Spectre.Console;
 
 namespace Advent.UseCases.Day18;
 
-public class Day18Part1Solver(int rows, int columns, int bytesToFall = 1024) : IDay18Solver
+internal class Day18Part1Solver(int rows, int columns, int bytesToFall = 1024) : IDay18Solver
 {
     private readonly int _bytesToFall = bytesToFall;
     private readonly int _rows = rows;

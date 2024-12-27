@@ -13,7 +13,7 @@ namespace Advent.UseCases.Day13;
 /// <remarks>A lot of help from this link:
 /// https://www.reddit.com/r/adventofcode/comments/1hd7irq/2024_day_13_an_explanation_of_the_mathematics/
 /// </remarks>
-public class Day13Part1Solver(int? maxIterations = 100, long? offset = null) : IDay13Solver
+internal class Day13Part1Solver(int? maxIterations = 100, long? offset = null) : IDay13Solver
 {
     private readonly int? _maxIterations = maxIterations;
     private readonly long _offset = offset ?? 0;

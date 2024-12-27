@@ -2,7 +2,7 @@ using Spectre.Console;
 
 namespace Advent.UseCases.Day2;
 
-public class Day2Part2Solver : IDay2Solver
+internal class Day2Part2Solver : IDay2Solver
 {
     public int Solve(IEnumerable<IEnumerable<int>> input)
     {

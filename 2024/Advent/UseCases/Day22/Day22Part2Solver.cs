@@ -5,7 +5,7 @@ using PriceSequence = (int, int, int, int);
 
 namespace Advent.UseCases.Day22;
 
-public class Day22Part2Solver : IDay21Solver
+internal class Day22Part2Solver : IDay21Solver
 {
     private const int SEQUENCE_LENGTH = 4;
     private const int MOD_VALUE = 10;
@@ -14,7 +14,7 @@ public class Day22Part2Solver : IDay21Solver
     private readonly Dictionary<PriceSequence, int> _priceMap = [];
     private readonly HashSet<PriceSequence> _visited = [];
 
-    public Day22Part2Solver(int simulations)
+    internal Day22Part2Solver(int simulations)
     {
         if (simulations <= SEQUENCE_LENGTH)
             throw new ArgumentException(

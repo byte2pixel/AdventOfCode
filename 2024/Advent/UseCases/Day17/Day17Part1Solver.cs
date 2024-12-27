@@ -1,6 +1,6 @@
 namespace Advent.UseCases.Day17;
 
-public class Day17Part1Solver : IDay17Solver
+internal class Day17Part1Solver : IDay17Solver
 {
     public string Solve(Day17Data data)
     {

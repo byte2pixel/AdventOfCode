@@ -1,8 +1,8 @@
 namespace Advent.UseCases.Day11;
 
-public static class Day11Parser
+internal static class Day11Parser
 {
-    public static ulong[] Parse(string input)
+    internal static ulong[] Parse(string input)
     {
         var lines = input.Split('\n', StringSplitOptions.RemoveEmptyEntries);
         var numbers = lines

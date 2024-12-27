@@ -37,10 +37,10 @@ internal class Gate
 internal class Day24Circuit
 {
     private bool _isSolved = false;
-    public HashSet<Wire> Wires { get; init; } = [];
-    public List<Gate> Gates { get; init; } = [];
+    internal HashSet<Wire> Wires { get; init; } = [];
+    internal List<Gate> Gates { get; init; } = [];
 
-    public Wire GetWire(string name) => Wires.First(w => w.Name == name);
+    internal Wire GetWire(string name) => Wires.First(w => w.Name == name);
 
     /// <summary>
     /// Get the signal of the output wire with the given name.
@@ -48,7 +48,7 @@ internal class Day24Circuit
     /// </summary>
     /// <param name="outputWireName"></param>
     /// <returns></returns>
-    public bool? GetOutputSignal(string outputWireName)
+    internal bool? GetOutputSignal(string outputWireName)
     {
         Solve();
         // // Return the signal of the requested output wire
@@ -81,27 +81,6 @@ internal class Day24Circuit
         _isSolved = true;
     }
 
-    /// <summary>
-    /// Reset the circuit by setting all wire signals to their original values.
-    /// </summary>
-    public void Reset()
-    {
-        foreach (var wire in Wires)
-        {
-            wire.Reset();
-        }
-        _isSolved = false;
-    }
-
-    public void SwapOutputWires(string outputWireName1, string outputWireName2)
-    {
-        Reset();
-        var gate1 = Gates.First(g => g.OutputWireName == outputWireName1);
-        var gate2 = Gates.First(g => g.OutputWireName == outputWireName2);
-        gate1.OutputWireName = outputWireName2;
-        gate2.OutputWireName = outputWireName1;
-    }
-
     private long GetNumber(char startsWith = 'z')
     {
         var outputWires = Wires
@@ -121,17 +100,7 @@ internal class Day24Circuit
         return signals.Select((b, i) => b ? 1L << i : 0).Aggregate((a, b) => a | b);
     }
 
-    public long GetInput1Number()
-    {
-        return GetNumber('x');
-    }
-
-    public long GetInput2Number()
-    {
-        return GetNumber('y');
-    }
-
-    public long GetOutputNumber()
+    internal long GetOutputNumber()
     {
         return GetNumber();
     }

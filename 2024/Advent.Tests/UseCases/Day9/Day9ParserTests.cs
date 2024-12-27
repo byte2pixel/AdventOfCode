@@ -4,13 +4,6 @@ namespace Advent.Tests.UseCases.Day9;
 
 public class Day9ParserTests
 {
-    private readonly Day9Parser _parser;
-
-    public Day9ParserTests()
-    {
-        _parser = new Day9Parser();
-    }
-
     [Fact]
     public void Parse_WhenInputIsEmpty_ThrowsInvalidOperationException()
     {
@@ -18,7 +11,7 @@ public class Day9ParserTests
         var input = "";
 
         // Act
-        Action act = () => _parser.Parse(input);
+        Action act = () => Day9Parser.Parse(input);
 
         // Assert
         act.Should().Throw<InvalidOperationException>();
@@ -31,7 +24,7 @@ public class Day9ParserTests
         var input = "0";
 
         // Act
-        Action act = () => _parser.Parse(input);
+        Action act = () => Day9Parser.Parse(input);
 
         // Assert
         act.Should().Throw<InvalidOperationException>();
@@ -62,7 +55,7 @@ public class Day9ParserTests
         ];
 
         // Act
-        var result = _parser.Parse(input);
+        var result = Day9Parser.Parse(input);
 
         // Assert
         result.ToArray().Should().BeEquivalentTo(expected);
@@ -73,7 +66,7 @@ public class Day9ParserTests
     {
         var data = TestData.GetDay9ParsedData();
         // Act
-        Span<uint> result = _parser.Parse(TestData.Day9ParserInput);
+        Span<uint> result = Day9Parser.Parse(TestData.Day9ParserInput);
 
         var resultArray = result.ToArray();
         // Assert

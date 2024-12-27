@@ -2,9 +2,9 @@ using Advent.Common;
 
 namespace Advent.UseCases.Day18;
 
-public static class Day18Parser
+internal static class Day18Parser
 {
-    public static List<GridCell> Parse(string input)
+    internal static List<GridCell> Parse(string input)
     {
         List<GridCell> byteCells =
         [

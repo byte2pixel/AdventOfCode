@@ -1,6 +1,6 @@
 namespace Advent.UseCases.Day9;
 
-public class Day9Parser
+internal static class Day9Parser
 {
     enum State
     {
@@ -8,12 +8,11 @@ public class Day9Parser
         FreeSpace,
     }
 
-    private State _state = State.FileLength;
-    private uint _fileId = 0;
-    private readonly List<uint> _result = [];
-
-    public Span<uint> Parse(string input)
+    internal static Span<uint> Parse(string input)
     {
+        State _state = State.FileLength;
+        uint _fileId = 0;
+        List<uint> _result = [];
         if (string.IsNullOrWhiteSpace(input))
         {
             throw new InvalidOperationException("Invalid input");
@@ -23,47 +22,62 @@ public class Day9Parser
 
         foreach (var line in lines)
         {
-            ProcessLine(line);
+            ProcessLine(line, ref _state, ref _fileId, ref _result);
         }
         return _result.ToArray();
     }
 
-    private void ProcessLine(string line)
+    private static void ProcessLine(
+        string line,
+        ref State _state,
+        ref uint _fileId,
+        ref List<uint> _result
+    )
     {
         foreach (var c in line)
         {
-            ProcessCharacter(c);
+            ProcessCharacter(c, ref _state, ref _fileId, ref _result);
         }
     }
 
-    private void ProcessCharacter(char c)
+    private static void ProcessCharacter(
+        char c,
+        ref State _state,
+        ref uint _fileId,
+        ref List<uint> _result
+    )
     {
         var digit = int.Parse(c.ToString());
         switch (_state)
         {
             case State.FileLength:
             {
-                HandleFile(digit);
+                HandleFile(digit, ref _state, ref _fileId, ref _result);
                 return;
             }
             case State.FreeSpace:
             {
-                HandleFreeSpace(digit);
+                HandleFreeSpace(digit, ref _state, ref _result);
                 return;
             }
         }
     }
 
-    private void HandleFreeSpace(int digit)
+    private static void HandleFreeSpace(int digit, ref State _state, ref List<uint> _result)
     {
         if (digit != 0)
         {
-            AddPositionsForFileId(digit, uint.MaxValue);
+            AddPositionsForFileId(digit, uint.MaxValue, ref _result);
         }
         _state = State.FileLength;
     }
 
-    private void HandleFile(int digit)
+    private static void HandleFile(
+        int digit,
+        ref State _state,
+        ref uint _fileId,
+        ref List<uint> _result
+    )
     {
         if (digit == 0)
         {
@@ -71,13 +85,13 @@ public class Day9Parser
         }
         else
         {
-            AddPositionsForFileId(digit, _fileId);
+            AddPositionsForFileId(digit, _fileId, ref _result);
         }
         _fileId++;
         _state = State.FreeSpace;
     }
 
-    private void AddPositionsForFileId(int digit, uint fileId)
+    private static void AddPositionsForFileId(int digit, uint fileId, ref List<uint> _result)
     {
         for (int i = 0; i < digit; i++)
         {

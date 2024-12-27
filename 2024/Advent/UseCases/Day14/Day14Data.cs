@@ -3,17 +3,17 @@ using Advent.Extensions;
 
 namespace Advent.UseCases.Day14;
 
-public struct RobotData
+internal struct RobotData
 {
-    public GridCell CurrentCell { get; set; }
-    public GridCell Velocity { get; init; }
+    internal GridCell CurrentCell { get; set; }
+    internal GridCell Velocity { get; init; }
 }
 
-public readonly ref struct Day14Data
+internal readonly ref struct Day14Data
 {
-    public RobotData[] Robots { get; init; }
+    internal RobotData[] Robots { get; init; }
 
-    public GridCell[] AllRobotCells
+    internal GridCell[] AllRobotCells
     {
         get
         {
@@ -26,7 +26,7 @@ public readonly ref struct Day14Data
         }
     }
 
-    public void MoveRobots(int seconds, int maximumRows, int maximumColumns)
+    internal void MoveRobots(int seconds, int maximumRows, int maximumColumns)
     {
         for (int i = 0; i < Robots.Length; i++)
         {

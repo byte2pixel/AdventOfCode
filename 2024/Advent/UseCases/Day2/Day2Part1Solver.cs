@@ -1,6 +1,6 @@
 namespace Advent.UseCases.Day2;
 
-public class Day2Part1Solver : IDay2Solver
+internal class Day2Part1Solver : IDay2Solver
 {
     public int Solve(IEnumerable<IEnumerable<int>> input)
     {

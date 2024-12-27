@@ -2,9 +2,9 @@ using Advent.Common;
 
 namespace Advent.UseCases.Day6;
 
-public static class Day6Helpers
+internal static class Day6Helpers
 {
-    public static Direction TurnRight(Direction direction)
+    internal static Direction TurnRight(Direction direction)
     {
         return direction switch
         {
@@ -16,7 +16,7 @@ public static class Day6Helpers
         };
     }
 
-    public static GridCell GoBackOne(GridCell currentPosition, Direction currentDirection)
+    internal static GridCell GoBackOne(GridCell currentPosition, Direction currentDirection)
     {
         return currentDirection switch
         {
@@ -28,7 +28,7 @@ public static class Day6Helpers
         };
     }
 
-    public static GridCell GoForwardOne(GridCell currentPosition, Direction currentDirection)
+    internal static GridCell GoForwardOne(GridCell currentPosition, Direction currentDirection)
     {
         return currentDirection switch
         {

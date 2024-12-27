@@ -1,3 +1,4 @@
+using Advent.Common.Settings;
 using Advent.UseCases.Day4;
 using Spectre.Console.Cli;
 
@@ -30,7 +31,7 @@ public class Day4CommandTests
         var command = new Day4Command(mockReader, console);
         var result = await command.ExecuteAsync(
             new CommandContext(_arguments, _remaining, "day4", null),
-            new Day4Settings { Part = "Part 1", Word = "XMAS" }
+            new AdventSettings { Part = "Part 1" }
         );
         result.Should().Be(0);
         console.Output.Should().Contain("Day 4 Part 1");
@@ -46,7 +47,7 @@ public class Day4CommandTests
         var command = new Day4Command(mockReader, console);
         var result = await command.ExecuteAsync(
             new CommandContext(_arguments, _remaining, "day4", null),
-            new Day4Settings { Part = "Part 2", Word = "MAS" }
+            new AdventSettings { Part = "Part 2" }
         );
         result.Should().Be(0);
         console.Output.Should().Contain("Day 4 Part 2");
@@ -64,7 +65,7 @@ public class Day4CommandTests
         var command = new Day4Command(mockReader, console);
         var result = await command.ExecuteAsync(
             new CommandContext(_arguments, _remaining, "day4", null),
-            new Day4Settings() { Word = "XMAS" }
+            new AdventSettings() { }
         );
         result.Should().Be(0);
         console.Output.Should().Contain("Day 4 Part 1");
@@ -83,7 +84,7 @@ public class Day4CommandTests
         var command = new Day4Command(mockReader, console);
         var result = await command.ExecuteAsync(
             new CommandContext(_arguments, _remaining, "day4", null),
-            new Day4Settings() { Word = "MAS" }
+            new AdventSettings() { }
         );
         result.Should().Be(0);
         console.Output.Should().Contain("Day 4 Part 2");

@@ -3,7 +3,7 @@ using Spectre.Console;
 
 namespace Advent.UseCases.Day19;
 
-public class Day19Part2Solver : IDay19Solver
+internal class Day19Part2Solver : IDay19Solver
 {
     /// <summary>
     /// Solves the problem of constructing a list target strings using
@@ -39,7 +39,7 @@ public class Day19Part2Solver : IDay19Solver
     /// Determines if a target string can be constructed from a list of building blocks.
     /// Uses dynamic programming with optimized block matching.
     /// </summary>
-    public static bool CanConstructString(
+    private static bool CanConstructString(
         string target,
         IList<string> buildingBlocks,
         out ulong possibilities

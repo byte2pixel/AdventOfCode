@@ -1,8 +1,8 @@
 namespace Advent.UseCases.Day13;
 
-public static class Day13Parser
+internal static class Day13Parser
 {
-    public static Day13Data[] Parse(string input)
+    internal static Day13Data[] Parse(string input)
     {
         var groups = input.Split("\n\n", StringSplitOptions.RemoveEmptyEntries);
         Day13Data[] result = new Day13Data[groups.Length];

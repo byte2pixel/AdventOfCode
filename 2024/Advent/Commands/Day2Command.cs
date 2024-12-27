@@ -10,12 +10,10 @@ namespace Advent.Commands;
 public class Day2Command(IFileReader reader, IAnsiConsole console)
     : AdventCommand<AdventSettings>(reader, console)
 {
-    private readonly Day2Parser _parser = new();
-
     public override async Task<int> ExecuteAsync(CommandContext context, AdventSettings settings)
     {
         var input = await _reader.ReadInputAsync("../input/day2input.txt");
-        var data = _parser.Parse(input);
+        var data = Day2Parser.Parse(input);
 
         var choice = settings.Part ?? PromptForPartChoice();
         IDay2Solver solver = choice switch

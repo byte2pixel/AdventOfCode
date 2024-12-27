@@ -1,11 +1,10 @@
 namespace Advent.UseCases.Day2;
 
-public class Day2Parser
+internal static class Day2Parser
 {
-    private readonly List<List<int>> reports = [];
-
-    public IEnumerable<IEnumerable<int>> Parse(string input)
+    internal static IEnumerable<IEnumerable<int>> Parse(string input)
     {
+        List<List<int>> reports = [];
         var lines = input.Split('\n', StringSplitOptions.RemoveEmptyEntries);
         foreach (var line in lines)
         {

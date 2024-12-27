@@ -4,7 +4,7 @@ using Spectre.Console;
 
 namespace Advent.UseCases.Day22;
 
-public class Day22Part1Solver(int simulations) : IDay21Solver
+internal class Day22Part1Solver(int simulations) : IDay21Solver
 {
     private readonly int _simulations = simulations;
 

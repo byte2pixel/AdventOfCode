@@ -5,8 +5,8 @@ namespace Advent.UseCases.Day23;
 
 internal class Day23Part2Solver : IDay23Solver
 {
-    public readonly Dictionary<string, HashSet<string>> _graph = [];
-    public readonly List<List<string>> _cliques = [];
+    internal readonly Dictionary<string, HashSet<string>> _graph = [];
+    internal readonly List<List<string>> _cliques = [];
 
     public string Solve(List<(string, string)> input)
     {

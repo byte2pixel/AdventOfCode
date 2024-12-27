@@ -4,12 +4,24 @@ using Spectre.Console;
 
 namespace Advent.UseCases.Day6;
 
-public class Day6Part2Solver : IDay6Solver
+internal class Day6Part2Solver : IDay6Solver
 {
     private GridCell _startingPosition;
     private Direction _startingDirection;
     private int _infiniteLoopCount;
     private readonly HashSet<(GridCell, Direction)> _turnHistory = [];
+
+    public int Solve(GridData input)
+    {
+        Stopwatch sw = new();
+        sw.Start();
+        _startingPosition = input.Find('^');
+        _startingDirection = Direction.North;
+        Move(input);
+        sw.Stop();
+        AnsiConsole.WriteLine($"Elapsed time: {sw.Elapsed.TotalMilliseconds} ms");
+        return _infiniteLoopCount;
+    }
 
     private void Move(GridData data)
     {
@@ -51,17 +63,5 @@ public class Day6Part2Solver : IDay6Solver
                 }
             }
         }
-    }
-
-    public int Solve(GridData input)
-    {
-        Stopwatch sw = new();
-        sw.Start();
-        _startingPosition = input.Find('^');
-        _startingDirection = Direction.North;
-        Move(input);
-        sw.Stop();
-        AnsiConsole.WriteLine($"Elapsed time: {sw.Elapsed.TotalMilliseconds} ms");
-        return _infiniteLoopCount;
     }
 }

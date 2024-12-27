@@ -7,7 +7,7 @@ using Spectre.Console;
 
 namespace Advent.UseCases.Day20;
 
-public class Day20Solver(int savingsThreshold, int cheatDistance) : IDay6Solver
+internal class Day20Solver(int savingsThreshold, int cheatDistance) : IDay6Solver
 {
     private readonly int _savingsThreshold = savingsThreshold;
     private readonly HashSet<(GridCell, GridCell)> possibleCheats = [];
