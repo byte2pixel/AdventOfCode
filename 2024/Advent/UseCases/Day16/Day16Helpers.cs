@@ -1,5 +1,3 @@
-using Advent.Common;
-
 namespace Advent.UseCases.Day16;
 
 internal class SearchState

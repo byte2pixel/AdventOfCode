@@ -1,5 +1,4 @@
 using System.Diagnostics;
-using Advent.Common;
 using Spectre.Console;
 using Cache = System.Collections.Generic.Dictionary<
     (char currentKey, char nextKey, int depth),

@@ -1,6 +1,4 @@
-using Advent.Common;
 using Advent.Common.Commands;
-using Advent.Common.Settings;
 using Advent.UseCases.Day23;
 using Spectre.Console;
 using Spectre.Console.Cli;
@@ -12,7 +10,7 @@ public class Day23Command(IFileReader reader, IAnsiConsole console)
 {
     public override async Task<int> ExecuteAsync(CommandContext context, AdventSettings settings)
     {
-        var input = await _reader.ReadInputAsync("../input/day23input.txt");
+        var input = await _reader.ReadInputAsync(context.Name);
         var data = Day23Parser.Parse(input);
 
         var choice = settings.PartChoice ?? PromptForPartChoice();

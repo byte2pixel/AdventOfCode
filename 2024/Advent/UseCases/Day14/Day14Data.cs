@@ -1,4 +1,3 @@
-using Advent.Common;
 using Advent.Extensions;
 
 namespace Advent.UseCases.Day14;

@@ -1,6 +1,5 @@
 using Advent.Common.Commands;
 using Advent.Common.Settings;
-using Advent.UseCases.Day15;
 using Spectre.Console.Cli;
 
 namespace Advent.Tests.Commands;
@@ -27,7 +26,7 @@ public class Day15CommandTests
         var command = new Day15Command(mockReader, console);
         var result = await command.ExecuteAsync(
             new CommandContext(_arguments, _remaining, "day15", null),
-            new Day15Settings { PartChoice = new(Part.Part1), Live = false, }
+            new LiveSettings { PartChoice = new(Part.Part1), Live = false, }
         );
         result.Should().Be(0);
         console.Output.Should().Contain("Day 15 Part 1");
@@ -45,7 +44,7 @@ public class Day15CommandTests
         var command = new Day15Command(mockReader, console);
         var result = await command.ExecuteAsync(
             new CommandContext(_arguments, _remaining, "day15", null),
-            new Day15Settings { PartChoice = new(Part.Part2), Live = false, }
+            new LiveSettings { PartChoice = new(Part.Part2), Live = false, }
         );
         result.Should().Be(0);
         console.Output.Should().Contain("Day 15 Part 2");

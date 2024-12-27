@@ -1,5 +1,3 @@
-using Advent.Common;
-
 namespace Advent.UseCases.Day15;
 
 internal readonly struct Day15Data

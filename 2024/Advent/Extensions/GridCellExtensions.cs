@@ -1,5 +1,3 @@
-using Advent.Common;
-
 namespace Advent.Extensions;
 
 public static class GridCellExtensions

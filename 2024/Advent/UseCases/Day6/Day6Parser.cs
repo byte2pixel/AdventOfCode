@@ -1,5 +1,3 @@
-using Advent.Common;
-
 namespace Advent.UseCases.Day6;
 
 internal static class Day6Parser

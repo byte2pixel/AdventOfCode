@@ -1,6 +1,4 @@
-using Advent.UseCases;
-
-namespace Advent.Tests.UseCases;
+namespace Advent.Tests.Common;
 
 public class FileReaderTest
 {
@@ -8,20 +6,13 @@ public class FileReaderTest
     public async Task ReadInputAsync_ShouldReturnFileContent()
     {
         // Arrange
-        var filename = Path.GetRandomFileName();
-        var filePath = Path.Combine(Path.GetTempPath(), filename);
-        var expectedContent = "Hello, World!";
-        await File.WriteAllTextAsync(filePath, expectedContent);
         var fileReader = new FileReader();
 
         // Act
-        var result = await fileReader.ReadInputAsync(filePath);
+        var result = await fileReader.ReadInputAsync("day1");
 
         // Assert
-        Assert.Equal(expectedContent, result);
-
-        // Cleanup
-        File.Delete(filePath);
+        result.Should().StartWith("99006   28305");
     }
 
     [Fact]

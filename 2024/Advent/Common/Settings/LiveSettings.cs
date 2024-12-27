@@ -1,10 +1,9 @@
 using System.ComponentModel;
-using Advent.Common.Settings;
 using Spectre.Console.Cli;
 
-namespace Advent.UseCases.Day15;
+namespace Advent.Common.Settings;
 
-public sealed class Day15Settings : AdventSettings
+public sealed class LiveSettings : AdventSettings
 {
     [CommandOption("-l|--live")]
     [Description("Process the solution in real time")]

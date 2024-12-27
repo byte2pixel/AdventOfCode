@@ -1,5 +1,3 @@
-using Advent.Common;
-
 namespace Advent.UseCases.Day6;
 
 internal interface IDay6Solver

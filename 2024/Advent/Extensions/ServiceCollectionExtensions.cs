@@ -1,5 +1,3 @@
-using Advent.Common;
-using Advent.UseCases;
 using Microsoft.Extensions.DependencyInjection;
 using Spectre.Console;
 
