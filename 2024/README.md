@@ -26,8 +26,8 @@ Example from `./2024/Advent` folder
 ```sh
 dotnet run -- day1
 dotnet run -- day2
-dotnet run -- day3
 dotnet run -- day6
+dotnet run -- day25
 ```
 
 Each day may have multipl parts use the help command to see additional arguments.
@@ -40,8 +40,8 @@ dotnet run -- day1 --help
 Example:
 
 ```sh
+dotnet run -- day1 --part 1
 dotnet run -- day1 --part "Part 1"
-dotnet run -- day1 --part "Part 2"
 ```
 
 ### Run Solutions (Option 2)
@@ -53,7 +53,7 @@ The key is the input folder with all the input files needs to be located in the 
 dotnet build -c Release
 ./bin/Release/net9.0/Advent.exe --help
 ./bin/Release/net9.0/Advent.exe day1
-./bin/Release/net9.0/Advent.exe day6 --part "Part 2"
+./bin/Release/net9.0/Advent.exe day6 --part 2
 ```
 
 ## Tests

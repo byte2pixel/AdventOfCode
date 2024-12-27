@@ -13,17 +13,17 @@ public class Day15Command(IFileReader reader, IAnsiConsole console)
     public override async Task<int> ExecuteAsync(CommandContext context, AdventSettings settings)
     {
         var input = await _reader.ReadInputAsync("../input/day15input.txt");
-        var choice = settings.Part ?? PromptForPartChoice();
+        var choice = settings.PartChoice ?? PromptForPartChoice();
 
         Day15Data data;
         IDay15Solver solver;
-        switch (choice)
+        switch (choice.Choice)
         {
-            case "Part 1":
+            case Part.Part1:
                 data = Day15Parser.Parse(input);
                 solver = new Day15Part1Solver();
                 break;
-            case "Part 2":
+            case Part.Part2:
                 data = Day15Parser.ResizeGrid(Day15Parser.Parse(input));
                 solver = new Day15Part2Solver();
                 break;

@@ -1,4 +1,5 @@
-﻿using Advent.Common.Settings;
+﻿using Advent.Common.Commands;
+using Advent.Common.Settings;
 using Spectre.Console.Cli;
 
 namespace Advent.Tests.Commands;
@@ -21,7 +22,7 @@ public class Day1CommandTests
         var command = new Day1Command(mockReader, console);
         var result = await command.ExecuteAsync(
             new CommandContext(_arguments, _remaining, "day1", null),
-            new AdventSettings { Part = "Part 1" }
+            new AdventSettings { PartChoice = new(Part.Part1) }
         );
         result.Should().Be(0);
         console.Output.Should().Contain("Day 1 Part 1");
@@ -37,7 +38,7 @@ public class Day1CommandTests
         var command = new Day1Command(mockReader, console);
         var result = await command.ExecuteAsync(
             new CommandContext(_arguments, _remaining, "day1", null),
-            new AdventSettings { Part = "Part 2" }
+            new AdventSettings { PartChoice = new(Part.Part2) }
         );
         result.Should().Be(0);
         console.Output.Should().Contain("Day 1 Part 2");
@@ -54,7 +55,7 @@ public class Day1CommandTests
         Func<Task> act = async () =>
             await command.ExecuteAsync(
                 new CommandContext(_arguments, _remaining, "day1", null),
-                new AdventSettings { Part = "Part 3" }
+                new AdventSettings { PartChoice = new PartChoice((Part)3) }
             );
         await act.Should()
             .ThrowAsync<InvalidOperationException>()

@@ -1,3 +1,4 @@
+using Advent.Common.Commands;
 using Advent.UseCases.Day14;
 using Spectre.Console.Cli;
 
@@ -27,7 +28,7 @@ public class Day14CommandTests
             new CommandContext(_arguments, _remaining, "day14", null),
             new Day14Settings
             {
-                Part = "Part 1",
+                PartChoice = new(Part.Part1),
                 Seconds = 100,
                 Rows = 7,
                 Columns = 11
@@ -51,7 +52,7 @@ public class Day14CommandTests
             new CommandContext(_arguments, _remaining, "day14", null),
             new Day14Settings
             {
-                Part = "Part 2",
+                PartChoice = new(Part.Part2),
                 Seconds = 1,
                 Rows = 7,
                 Columns = 11

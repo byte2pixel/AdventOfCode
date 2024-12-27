@@ -15,11 +15,11 @@ public class Day4Command(IFileReader reader, IAnsiConsole console)
         var input = await _reader.ReadInputAsync("../input/day4input.txt");
         var data = Day4Parser.Parse(input);
 
-        var choice = settings.Part ?? PromptForPartChoice();
-        IDay4Solver solver = choice switch
+        var choice = settings.PartChoice ?? PromptForPartChoice();
+        IDay4Solver solver = choice.Choice switch
         {
-            "Part 1" => new Day4Part1Solver(),
-            "Part 2" => new Day4Part2Solver(),
+            Part.Part1 => new Day4Part1Solver(),
+            Part.Part2 => new Day4Part2Solver(),
             _ => throw new InvalidOperationException("Invalid choice")
         };
 

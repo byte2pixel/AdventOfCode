@@ -16,11 +16,11 @@ public class Day8Command(IFileReader reader, IAnsiConsole console)
         var input = await _reader.ReadInputAsync("../input/day8input.txt");
         var data = Day6Parser.Parse(input);
 
-        var choice = settings.Part ?? PromptForPartChoice();
-        IDay6Solver solver = choice switch
+        var choice = settings.PartChoice ?? PromptForPartChoice();
+        IDay6Solver solver = choice.Choice switch
         {
-            "Part 1" => new Day8Part1Solver(),
-            "Part 2" => new Day8Part2Solver(),
+            Part.Part1 => new Day8Part1Solver(),
+            Part.Part2 => new Day8Part2Solver(),
             _ => throw new InvalidOperationException("Invalid choice")
         };
 

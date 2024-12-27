@@ -1,3 +1,4 @@
+using Advent.Common.Commands;
 using Advent.Common.Settings;
 using Spectre.Console.Cli;
 
@@ -25,7 +26,7 @@ public class Day5CommandTests
         var command = new Day5Command(mockReader, console);
         var result = await command.ExecuteAsync(
             new CommandContext(_arguments, _remaining, "day5", null),
-            new AdventSettings { Part = "Part 1" }
+            new AdventSettings { PartChoice = new(Part.Part1) }
         );
         result.Should().Be(0);
         console.Output.Should().Contain("Day 5 Part 1");

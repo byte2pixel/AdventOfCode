@@ -1,3 +1,4 @@
+using Advent.Common.Commands;
 using Advent.UseCases.Day20;
 using Spectre.Console.Cli;
 
@@ -25,7 +26,7 @@ public class Day20CommandTests
         var command = new Day20Command(mockReader, console);
         var result = await command.ExecuteAsync(
             new CommandContext(_arguments, _remaining, "day20", null),
-            new Day20Settings { Part = "Part 1", Threshold = 0 }
+            new Day20Settings { PartChoice = new(Part.Part1), Threshold = 0 }
         );
         result.Should().Be(0);
         console.Output.Should().Contain("Day 20 Part 1");
@@ -43,7 +44,7 @@ public class Day20CommandTests
         var command = new Day20Command(mockReader, console);
         var result = await command.ExecuteAsync(
             new CommandContext(_arguments, _remaining, "day20", null),
-            new Day20Settings { Part = "Part 2", Threshold = 50 }
+            new Day20Settings { PartChoice = new(Part.Part2), Threshold = 50 }
         );
         result.Should().Be(0);
         console.Output.Should().Contain("Day 20 Part 2");

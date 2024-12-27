@@ -1,3 +1,4 @@
+using Advent.Common.Commands;
 using Advent.UseCases.Day18;
 using Spectre.Console.Cli;
 
@@ -27,7 +28,7 @@ public class Day18CommandTests
             new CommandContext(_arguments, _remaining, "day18", null),
             new Day18Settings
             {
-                Part = "Part 1",
+                PartChoice = new(Part.Part1),
                 BytesToDrop = 12,
                 Rows = 7,
                 Columns = 7
@@ -51,7 +52,7 @@ public class Day18CommandTests
             new CommandContext(_arguments, _remaining, "day18", null),
             new Day18Settings
             {
-                Part = "Part 2",
+                PartChoice = new(Part.Part2),
                 Rows = 7,
                 Columns = 7
             }

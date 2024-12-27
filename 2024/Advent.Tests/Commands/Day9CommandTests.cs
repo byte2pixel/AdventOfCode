@@ -1,3 +1,4 @@
+using Advent.Common.Commands;
 using Advent.Common.Settings;
 using Spectre.Console.Cli;
 
@@ -25,7 +26,7 @@ public class Day9CommandTests
         var command = new Day9Command(mockReader, console);
         var result = await command.ExecuteAsync(
             new CommandContext(_arguments, _remaining, "day9", null),
-            new AdventSettings { Part = "Part 1" }
+            new AdventSettings { PartChoice = new(Part.Part1) }
         );
         result.Should().Be(0);
         console.Output.Should().Contain("Day 9 Part 1");
@@ -43,7 +44,7 @@ public class Day9CommandTests
         var command = new Day9Command(mockReader, console);
         var result = await command.ExecuteAsync(
             new CommandContext(_arguments, _remaining, "day9", null),
-            new AdventSettings { Part = "Part 2" }
+            new AdventSettings { PartChoice = new(Part.Part2) }
         );
         result.Should().Be(0);
         console.Output.Should().Contain("Day 9 Part 2");

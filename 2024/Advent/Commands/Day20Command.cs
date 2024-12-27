@@ -15,11 +15,11 @@ public class Day20Command(IFileReader reader, IAnsiConsole console)
         var input = await _reader.ReadInputAsync("../input/day20input.txt");
         var data = Day6Parser.Parse(input);
 
-        var choice = settings.Part ?? PromptForPartChoice();
-        IDay6Solver solver = choice switch
+        var choice = settings.PartChoice ?? PromptForPartChoice();
+        IDay6Solver solver = choice.Choice switch
         {
-            "Part 1" => new Day20Solver(settings.Threshold, 2),
-            "Part 2" => new Day20Solver(settings.Threshold, 20),
+            Part.Part1 => new Day20Solver(settings.Threshold, 2),
+            Part.Part2 => new Day20Solver(settings.Threshold, 20),
             _ => throw new InvalidOperationException("Invalid choice")
         };
 

@@ -14,11 +14,12 @@ public class Day18Command(IFileReader reader, IAnsiConsole console)
         var input = await _reader.ReadInputAsync("../input/day18input.txt");
         var data = Day18Parser.Parse(input);
 
-        var choice = settings.Part ?? PromptForPartChoice();
-        IDay18Solver solver = choice switch
+        var choice = settings.PartChoice ?? PromptForPartChoice();
+        IDay18Solver solver = choice.Choice switch
         {
-            "Part 1" => new Day18Part1Solver(settings.Rows, settings.Columns, settings.BytesToDrop),
-            "Part 2" => new Day18Part2Solver(settings.Rows, settings.Columns),
+            Part.Part1
+                => new Day18Part1Solver(settings.Rows, settings.Columns, settings.BytesToDrop),
+            Part.Part2 => new Day18Part2Solver(settings.Rows, settings.Columns),
             _ => throw new InvalidOperationException("Invalid choice")
         };
 
