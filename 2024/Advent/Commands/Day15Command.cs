@@ -8,9 +8,9 @@ using Spectre.Console.Cli;
 namespace Advent.Commands;
 
 public class Day15Command(IFileReader reader, IAnsiConsole console)
-    : AdventCommand<AdventSettings>(reader, console)
+    : AdventCommand<Day15Settings>(reader, console)
 {
-    public override async Task<int> ExecuteAsync(CommandContext context, AdventSettings settings)
+    public override async Task<int> ExecuteAsync(CommandContext context, Day15Settings settings)
     {
         var input = await _reader.ReadInputAsync("../input/day15input.txt");
         var choice = settings.PartChoice ?? PromptForPartChoice();
@@ -21,20 +21,18 @@ public class Day15Command(IFileReader reader, IAnsiConsole console)
         {
             case Part.Part1:
                 data = Day15Parser.Parse(input);
-                solver = new Day15Part1Solver();
+                solver = new Day15Part1Solver(settings, _console);
                 break;
             case Part.Part2:
                 data = Day15Parser.ResizeGrid(Day15Parser.Parse(input));
-                solver = new Day15Part2Solver();
+                solver = new Day15Part2Solver(settings, _console);
                 break;
             default:
                 _console.MarkupLine("[red]Invalid choice[/]");
                 return 1;
         }
 
-        (int result, string[]? gridData) = solver.Solve(data);
-        if (gridData is not null)
-            DisplayGrid(gridData);
+        int result = solver.Solve(data);
         _console.MarkupLine($"[bold green]Day 15 {choice} [/]");
         _console.MarkupLine($"The answer is [bold yellow]{result}[/]");
         return 0;

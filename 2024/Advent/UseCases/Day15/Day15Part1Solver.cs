@@ -4,31 +4,66 @@ using Spectre.Console;
 
 namespace Advent.UseCases.Day15;
 
-internal class Day15Part1Solver : IDay15Solver
+internal class Day15Part1Solver(Day15Settings settings, IAnsiConsole console) : IDay15Solver
 {
     GridCell _currentPosition = new(0, 0);
+    Table? _liveTable = null;
 
-    public (int, string[]? grid) Solve(Day15Data data)
+    public int Solve(Day15Data data)
     {
         Stopwatch sw = new();
         sw.Start();
+        int result = 0;
         _currentPosition = data.Data.Find('@'); // the @ is the starting position
-        int result = RunSimulation(data);
-        sw.Stop();
-        AnsiConsole.WriteLine($"Elapsed: {sw.Elapsed.TotalMilliseconds} ms");
-        return (result, data.Data.ToStringArray());
+        if (!settings.Live)
+        {
+            result = RunSimulation(data);
+            sw.Stop();
+            console.WriteLine($"Elapsed: {sw.Elapsed.TotalMilliseconds} ms");
+            return result;
+        }
+
+        _liveTable = new Table();
+        _liveTable.AddColumn(new TableColumn("Day 15 Part 1").Centered());
+        for (int i = 0; i < data.Data.Rows; i++)
+        {
+            _liveTable.AddRow(new Text(data.Data[i].ToString()).Centered());
+        }
+        result = console
+            .Live(_liveTable)
+            .AutoClear(false)
+            .Overflow(VerticalOverflow.Visible)
+            .Start(ctx =>
+            {
+                void Update(int delay, Action action)
+                {
+                    action();
+                    ctx.Refresh();
+                    Thread.Sleep(delay);
+                }
+                ctx.Refresh();
+                int result = RunSimulation(data, Update);
+                ctx.Refresh();
+                return result;
+            });
+        return result;
     }
 
-    private int RunSimulation(Day15Data data)
+    private int RunSimulation(Day15Data data, Action<int, Action>? update = null)
     {
         var moves = data.Moves;
-        foreach (var move in moves)
+        for (int i = 0; i < moves.Length; i++)
         {
             // do something with the move
-            Direction direction = GetDirection(move);
+            Direction direction = GetDirection(moves[i]);
             var fromPostion = data.Data.FromTo(_currentPosition, direction);
             AdjustGrid(data, fromPostion);
+            if (update is not null && i % 15 == 0)
+            {
+                UpdateLiveTableRows(data, update);
+            }
         }
+        UpdateLiveTableRows(data, update);
         var boxes = data.Data.FindAll('O');
         int gpsScore = 0;
         foreach (var box in boxes)
@@ -36,6 +71,20 @@ internal class Day15Part1Solver : IDay15Solver
             gpsScore += box.Row * 100 + box.Column;
         }
         return gpsScore;
+    }
+
+    private void UpdateLiveTableRows(Day15Data data, Action<int, Action>? update)
+    {
+        update?.Invoke(
+            1,
+            () =>
+            {
+                for (int i = 0; i < data.Data.Rows; i++)
+                {
+                    _liveTable?.Rows.Update(i, 0, new Text(data.Data[i].ToString()).Centered());
+                }
+            }
+        );
     }
 
     private void AdjustGrid(Day15Data data, IEnumerable<GridCell> fromPostion)

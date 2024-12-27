@@ -2,7 +2,7 @@ using Advent.Common;
 
 namespace Advent.UseCases.Day15;
 
-internal readonly ref struct Day15Data
+internal readonly struct Day15Data
 {
     public GridData Data { get; init; }
     public char[] Moves { get; init; }
