@@ -1,5 +1,4 @@
 using System.Diagnostics;
-using Advent.Common;
 using Advent.UseCases.Day6;
 using Spectre.Console;
 

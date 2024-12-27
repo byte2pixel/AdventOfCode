@@ -1,6 +1,5 @@
 using System.Collections.Concurrent;
 using System.Diagnostics;
-using Advent.Common;
 using Advent.UseCases.Day18;
 using Advent.UseCases.Day6;
 using Spectre.Console;

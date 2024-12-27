@@ -1,11 +1,10 @@
-using Advent.UseCases;
 using Microsoft.Extensions.DependencyInjection;
 using Spectre.Console.Cli;
 using Spectre.Console.Cli.Extensions.DependencyInjection;
 
 namespace Advent.Tests.IntegrationTests;
 
-public class CommandAppTests : IClassFixture<TestFixture>
+public class CommandAppTests
 {
     private readonly TestConsole _console = new();
     private readonly FileReader _fileReader = new();
@@ -1184,13 +1183,4 @@ public class CommandAppTests : IClassFixture<TestFixture>
         result.Output.Should().Contain("The answer is 2586");
     }
     #endregion
-}
-
-public class TestFixture
-{
-    public TestFixture()
-    {
-        // One-time setup goes here
-        Directory.SetCurrentDirectory("../../../");
-    }
 }

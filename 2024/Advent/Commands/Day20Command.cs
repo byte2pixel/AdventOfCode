@@ -1,4 +1,3 @@
-using Advent.Common;
 using Advent.Common.Commands;
 using Advent.UseCases.Day20;
 using Advent.UseCases.Day6;
@@ -12,7 +11,7 @@ public class Day20Command(IFileReader reader, IAnsiConsole console)
 {
     public override async Task<int> ExecuteAsync(CommandContext context, Day20Settings settings)
     {
-        var input = await _reader.ReadInputAsync("../input/day20input.txt");
+        var input = await _reader.ReadInputAsync(context.Name);
         var data = Day6Parser.Parse(input);
 
         var choice = settings.PartChoice ?? PromptForPartChoice();

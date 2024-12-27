@@ -1,10 +1,9 @@
 using System.Diagnostics;
-using Advent.Common;
 using Spectre.Console;
 
 namespace Advent.UseCases.Day15;
 
-internal class Day15Part1Solver(Day15Settings settings, IAnsiConsole console) : IDay15Solver
+internal class Day15Part1Solver(LiveSettings settings, IAnsiConsole console) : IDay15Solver
 {
     GridCell _currentPosition = new(0, 0);
     Table? _liveTable = null;
