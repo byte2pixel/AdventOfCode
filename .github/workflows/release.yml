@@ -3,6 +3,9 @@ on:
   release:
     types: [published]
 
+permissions:
+  contents: write
+
 jobs:
   release:
     name: Release
@@ -34,10 +37,10 @@ jobs:
         shell: bash
         run: |
           # define the tag and name
-          tag= $(git describe --tags --abbrev=0)
+          tag=$(git describe --tags --abbrev=0)
           
           # tag without the v prefix
-          version= ${tag:1}
+          version=${tag:1}
           
           release_name="Advent-of-Code-$tag-${{ matrix.kind }}"
 
