@@ -41,8 +41,8 @@ jobs:
           
           release_name="Advent-of-Code-$tag-${{ matrix.kind }}"
 
-          # build the project
-            dotnet publish -c Release -r ${{ matrix.target }} -p:Version=$version -o "$release_name"
+          # build the 2024
+            dotnet publish ./2024/Advent/Advent.csproj -c Release -r ${{ matrix.target }} -p:Version=$version -p:DebugType=None -p:DebugSymbols=false -o "$release_name"
 
           # Pack files
           if [ "${{ matrix.target }}" == "win-x64" ]; then
