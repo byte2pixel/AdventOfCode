@@ -1,4 +1,3 @@
-using System.Reflection;
 using Advent.Common.Commands;
 using Advent.UseCases.Day1;
 using Spectre.Console;
