@@ -81,7 +81,11 @@ internal class Day15Part1Solver(Day15Settings settings, IAnsiConsole console) : 
             {
                 for (int i = 0; i < data.Data.Rows; i++)
                 {
-                    _liveTable?.Rows.Update(i, 0, new Text(data.Data[i].ToString()).Centered());
+                    _liveTable?.Rows.Update(
+                        i,
+                        0,
+                        new Markup(Day15Helper.TableMarkup(data.Data[i].ToString())).Centered()
+                    );
                 }
             }
         );
