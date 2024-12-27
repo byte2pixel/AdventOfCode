@@ -1,6 +1,6 @@
 namespace Advent.UseCases.Day7;
 
-public class Day7Part1Solver : IDay7Solver
+internal class Day7Part1Solver : IDay7Solver
 {
     /// <summary>
     /// Solve the equations and return the sum of the valid results

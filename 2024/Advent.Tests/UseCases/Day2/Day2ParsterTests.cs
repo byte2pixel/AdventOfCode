@@ -10,11 +10,7 @@ public class Day2ParserTests
     [Fact]
     public void Parse_ShouldReturnCorrectNumberOfLists()
     {
-        // Arrange
-        var parser = new Day2Parser();
-
-        // Act
-        var result = parser.Parse(TestData).ToList();
+        var result = Day2Parser.Parse(TestData).ToList();
 
         // Assert
         result.Count.Should().Be(6);

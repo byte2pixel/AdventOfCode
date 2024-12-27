@@ -1,13 +1,13 @@
 namespace Advent.UseCases.Day4;
 
-public readonly ref struct Day4Data(string[] input)
+internal readonly ref struct Day4Data(string[] input)
 {
     public readonly char[] FlatCrossword { get; } = input.SelectMany(x => x).ToArray();
     public readonly int Rows { get; } = input.Length;
     public readonly int Columns { get; } = input[0].Length;
 }
 
-public static class Day4Parser
+internal static class Day4Parser
 {
     public static Day4Data Parse(string input)
     {

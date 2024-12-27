@@ -4,7 +4,7 @@ using Spectre.Console;
 
 namespace Advent.UseCases.Day9;
 
-public class Day9Part1Solver : IDay9Solver
+internal class Day9Part1Solver : IDay9Solver
 {
     public ulong Solve(Span<uint> input)
     {

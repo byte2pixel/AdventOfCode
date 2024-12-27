@@ -20,10 +20,7 @@ public class Day4ParserTests
         var input = "123\n456\n789";
         var result = Day4Parser.Parse(input);
 
-        result
-            .FlatCrossword.ToArray()
-            .Should()
-            .BeEquivalentTo(['1', '2', '3', '4', '5', '6', '7', '8', '9']);
+        result.FlatCrossword.Should().BeEquivalentTo(['1', '2', '3', '4', '5', '6', '7', '8', '9']);
     }
 
     [Fact]

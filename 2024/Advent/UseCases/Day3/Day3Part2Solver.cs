@@ -2,7 +2,7 @@ using System.Text.RegularExpressions;
 
 namespace Advent.UseCases.Day3;
 
-public partial class Day3Part2Solver : IDay3Solver
+internal partial class Day3Part2Solver : IDay3Solver
 {
     [GeneratedRegex(@"do\(\)|don't\(\)|mul\((?<num1>\d{1,3}),(?<num2>\d{1,3})\)")]
     private static partial Regex MultiplicationPattern2();

@@ -1,18 +1,18 @@
 namespace Advent.UseCases.Day13;
 
-public interface IPoint
+internal interface IPoint
 {
     public long X { get; init; }
     public long Y { get; init; }
 }
 
-public readonly struct Point : IPoint
+internal readonly struct Point : IPoint
 {
     public long X { get; init; }
     public long Y { get; init; }
 }
 
-public readonly struct WeightedPoint : IPoint, IComparable<WeightedPoint>
+internal readonly struct WeightedPoint : IPoint, IComparable<WeightedPoint>
 {
     public long Weight { get; init; }
     public long X { get; init; }
@@ -44,8 +44,8 @@ public readonly struct WeightedPoint : IPoint, IComparable<WeightedPoint>
         left.Weight != right.Weight;
 }
 
-public struct Day13Data
+internal struct Day13Data
 {
-    public IPoint Destination { get; set; }
-    public WeightedPoint[] Points { get; init; }
+    internal IPoint Destination { get; set; }
+    internal WeightedPoint[] Points { get; init; }
 }

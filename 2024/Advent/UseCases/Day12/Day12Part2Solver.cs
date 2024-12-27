@@ -5,7 +5,7 @@ using Spectre.Console;
 
 namespace Advent.UseCases.Day12;
 
-public class Day12Part2Solver() : IDay6Solver
+internal class Day12Part2Solver() : IDay6Solver
 {
     private readonly Dictionary<char, int> fenceCostPerRegion = [];
     private readonly HashSet<GridCell> visited = [];

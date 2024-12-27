@@ -1,8 +1,8 @@
 namespace Advent.UseCases.Day7;
 
-public static class Day7Parser
+internal static class Day7Parser
 {
-    public static (ulong, uint[])[] Parse(string input)
+    internal static (ulong, uint[])[] Parse(string input)
     {
         var lines = input.Split('\n', StringSplitOptions.RemoveEmptyEntries);
         (ulong, uint[])[] result = new (ulong, uint[])[lines.Length];

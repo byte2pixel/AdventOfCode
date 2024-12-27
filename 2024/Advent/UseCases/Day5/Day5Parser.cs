@@ -3,15 +3,15 @@ using Spectre.Console;
 
 namespace Advent.UseCases.Day5;
 
-public class Day5Data()
+internal class Day5Data()
 {
     public required ReadOnlyDictionary<int, List<int>> PrintRules { get; init; }
     public required IEnumerable<IEnumerable<int>> PagesToPrint { get; init; }
 }
 
-public static class Day5Parser
+internal static class Day5Parser
 {
-    public static Day5Data Parse(string? input)
+    internal static Day5Data Parse(string? input)
     {
         ArgumentNullException.ThrowIfNull(input);
 

@@ -2,7 +2,7 @@ using Spectre.Console;
 
 namespace Advent.UseCases.Day17;
 
-public class Day17Part2Solver : IDay17Solver
+internal class Day17Part2Solver : IDay17Solver
 {
     public string Solve(Day17Data data)
     {

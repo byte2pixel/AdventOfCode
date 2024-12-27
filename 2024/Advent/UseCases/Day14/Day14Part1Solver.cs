@@ -4,7 +4,7 @@ using Spectre.Console;
 
 namespace Advent.UseCases.Day14;
 
-public class Day14Part1Solver : IDay14Solver
+internal class Day14Part1Solver : IDay14Solver
 {
     public (int, string[]?) Solve(Day14Data data, Day14Settings settings)
     {

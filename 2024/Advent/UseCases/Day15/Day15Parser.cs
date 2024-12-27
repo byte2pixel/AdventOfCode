@@ -10,7 +10,7 @@ internal readonly ref struct Day15Data
 
 internal static class Day15Parser
 {
-    public static Day15Data Parse(string input)
+    internal static Day15Data Parse(string input)
     {
         var gridAndMoves = input.Split("\n\n", StringSplitOptions.RemoveEmptyEntries);
         var gridLines = gridAndMoves[0].Split("\n", StringSplitOptions.RemoveEmptyEntries);
@@ -26,7 +26,7 @@ internal static class Day15Parser
         return new Day15Data { Data = new GridData(grid, rows, columns), Moves = moves };
     }
 
-    public static Day15Data ResizeGrid(Day15Data data)
+    internal static Day15Data ResizeGrid(Day15Data data)
     {
         int rows = data.Data.Rows;
         int columns = data.Data.Columns * 2;

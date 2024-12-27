@@ -3,7 +3,7 @@ using Spectre.Console;
 
 namespace Advent.UseCases.Day11;
 
-public class Day11Solver(int blinks = 25) : IDay11Solver
+internal class Day11Solver(int blinks = 25) : IDay11Solver
 {
     private readonly int _blinks = blinks;
 

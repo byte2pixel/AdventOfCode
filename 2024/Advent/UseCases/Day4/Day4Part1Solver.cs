@@ -4,16 +4,13 @@ using Spectre.Console;
 
 namespace Advent.UseCases.Day4;
 
-public class Day4Part1Solver : IDay4Solver
+internal class Day4Part1Solver : IDay4Solver
 {
-    private readonly char[] _word;
-    private readonly int _wordLength;
+    private readonly char[] _word = ['X', 'M', 'A', 'S'];
     private readonly char[] _reversedWord;
 
-    public Day4Part1Solver(string word)
+    internal Day4Part1Solver()
     {
-        _word = [.. word];
-        _wordLength = _word.Length;
         _reversedWord = _word.Reverse().ToArray();
     }
 
@@ -36,17 +33,17 @@ public class Day4Part1Solver : IDay4Solver
     {
         int count = 0;
         IEnumerable<Range> diagonalRangeInc = Enumerable
-            .Range(0, rows - _wordLength + 1)
+            .Range(0, rows - _word.Length + 1)
             .Select(x => new Range(
-                (cols * x) + _wordLength - 1,
-                (cols * x) + _wordLength - 1 + (cols - _wordLength)
+                (cols * x) + _word.Length - 1,
+                (cols * x) + _word.Length - 1 + (cols - _word.Length)
             ))
             .ToArray();
         foreach (var range in diagonalRangeInc)
         {
             for (int i = range.Start.Value; i <= range.End.Value; i++)
             {
-                int[] letterIndexes = Day4Helpers.ComputeDiagIncIndexes(i, _wordLength, cols);
+                int[] letterIndexes = Day4Helpers.ComputeDiagIncIndexes(i, _word.Length, cols);
                 count += LookForWord(data, letterIndexes);
             }
         }
@@ -57,17 +54,17 @@ public class Day4Part1Solver : IDay4Solver
     {
         int count = 0;
         IEnumerable<Range> diagonalRangeDec = Enumerable
-            .Range(0, rows - _wordLength + 1)
+            .Range(0, rows - _word.Length + 1)
             .Select(x => new Range(
                 x + ((cols - 1) * x),
-                x + ((cols - 1) * x) + (cols - _wordLength)
+                x + ((cols - 1) * x) + (cols - _word.Length)
             ))
             .ToArray();
         foreach (var range in diagonalRangeDec)
         {
             for (int i = range.Start.Value; i <= range.End.Value; i++)
             {
-                int[] letterIndexes = Day4Helpers.ComputeDiagDecIndexes(i, _wordLength, cols);
+                int[] letterIndexes = Day4Helpers.ComputeDiagDecIndexes(i, _word.Length, cols);
                 count += LookForWord(data, letterIndexes);
             }
         }
@@ -82,14 +79,14 @@ public class Day4Part1Solver : IDay4Solver
             .Range(0, rows)
             .Select(x => new Range(
                 x + ((cols - 1) * x),
-                x + ((cols - 1) * x) + (cols - _wordLength)
+                x + ((cols - 1) * x) + (cols - _word.Length)
             ))
             .ToArray();
         foreach (var range in horizontalRange)
         {
             for (int i = range.Start.Value; i <= range.End.Value; i++)
             {
-                int[] letterIndexes = Day4Helpers.ComputeHorizontalIndexes(i, _wordLength);
+                int[] letterIndexes = Day4Helpers.ComputeHorizontalIndexes(i, _word.Length);
                 count += LookForWord(data, letterIndexes);
             }
         }
@@ -100,14 +97,14 @@ public class Day4Part1Solver : IDay4Solver
     {
         int count = 0;
         IEnumerable<Range> verticalRange = Enumerable
-            .Range(0, rows - _wordLength + 1)
+            .Range(0, rows - _word.Length + 1)
             .Select(x => new Range(x + ((cols - 1) * x), x + ((cols - 1) * x) + cols - 1))
             .ToArray();
         foreach (var range in verticalRange)
         {
             for (int i = range.Start.Value; i <= range.End.Value; i++)
             {
-                int[] letterIndexes = Day4Helpers.ComputeVerticalIndexes(i, _wordLength, cols);
+                int[] letterIndexes = Day4Helpers.ComputeVerticalIndexes(i, _word.Length, cols);
                 count += LookForWord(data, letterIndexes);
             }
         }
@@ -121,8 +118,8 @@ public class Day4Part1Solver : IDay4Solver
             return 0;
 
         // Use stackalloc for small arrays
-        Span<char> chars = stackalloc char[_wordLength];
-        for (int x = 0; x < _wordLength; x++)
+        Span<char> chars = stackalloc char[_word.Length];
+        for (int x = 0; x < _word.Length; x++)
         {
             chars[x] = data[letterIndexes[x]];
         }

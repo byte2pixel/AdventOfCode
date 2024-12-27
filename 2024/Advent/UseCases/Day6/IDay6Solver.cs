@@ -1,9 +1,8 @@
 using Advent.Common;
 
-namespace Advent.UseCases.Day6
+namespace Advent.UseCases.Day6;
+
+internal interface IDay6Solver
 {
-    public interface IDay6Solver
-    {
-        int Solve(GridData input);
-    }
+    int Solve(GridData input);
 }

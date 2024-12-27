@@ -5,7 +5,7 @@ using Spectre.Console;
 
 namespace Advent.UseCases.Day10;
 
-public class Day10Part2Solver : IDay6Solver
+internal class Day10Part2Solver : IDay6Solver
 {
     // trails start at 0 and end at 9 and must be visited in order
     private static readonly char[] trailPath = ['0', '1', '2', '3', '4', '5', '6', '7', '8', '9'];

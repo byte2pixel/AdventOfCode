@@ -2,7 +2,7 @@ namespace Advent.UseCases.Day23;
 
 internal static class Day23Helper
 {
-    public static void PopulateGraphFromInput(
+    internal static void PopulateGraphFromInput(
         List<(string, string)> edges,
         Dictionary<string, HashSet<string>> adjacencyList
     )
@@ -24,7 +24,7 @@ internal static class Day23Helper
         }
     }
 
-    public static void ProcessGraph(
+    internal static void ProcessGraph(
         Dictionary<string, HashSet<string>> graph,
         List<List<string>> cliques
     )

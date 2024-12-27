@@ -4,7 +4,7 @@ using Spectre.Console;
 
 namespace Advent.UseCases.Day5;
 
-public class Day5Part1Solver : IDay5Solver
+internal class Day5Part1Solver : IDay5Solver
 {
     public int Solve(Day5Data data)
     {
@@ -33,7 +33,7 @@ public class Day5Part1Solver : IDay5Solver
             HashSet<int> previousPages = pages[..j].ToArray().ToHashSet();
             if (printRules.TryGetValue(pages[j], out List<int>? rules))
             {
-                if (Day5Helper.AlreadyFollowingRules(previousPages, rules))
+                if (!rules.Any(previousPages.Contains))
                     continue;
                 return 0;
             }

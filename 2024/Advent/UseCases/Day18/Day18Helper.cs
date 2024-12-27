@@ -10,15 +10,6 @@ internal static class Day18Helper
         public int Distance { get; set; }
     }
 
-    /// <summary>
-    /// Find the path from the top left to the bottom right of the grid
-    /// or from the start to the end cell.
-    /// avoiding the '#' characters. The path must be the shortest path
-    /// </summary>
-    /// <param name="grid"></param>
-    /// <param name="bytesToFall"></param>
-    /// <returns></returns>
-    /// <exception cref="NotImplementedException"></exception>
     internal static List<GridCell> FindPathFromTo(
         GridData grid,
         GridCell? start = null,

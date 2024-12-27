@@ -7,7 +7,7 @@ internal static class Day17Parser
     /// </summary>
     /// <param name="input"></param>
     /// <returns><see cref="Day17Data"/>with registers initialized and opcodes and operands ready</returns>
-    public static Day17Data Parse(string input)
+    internal static Day17Data Parse(string input)
     {
         var lines = input.Split("\n\n", StringSplitOptions.RemoveEmptyEntries);
         var registers = lines[0].Split("\n", StringSplitOptions.RemoveEmptyEntries);

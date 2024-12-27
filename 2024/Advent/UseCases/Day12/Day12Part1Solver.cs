@@ -7,11 +7,11 @@ namespace Advent.UseCases.Day12;
 
 internal struct Day12Node
 {
-    public GridCell Position { get; set; }
-    public char Region { get; set; }
+    internal GridCell Position { get; set; }
+    internal char Region { get; set; }
 }
 
-public class Day12Part1Solver : IDay6Solver
+internal class Day12Part1Solver : IDay6Solver
 {
     private readonly Dictionary<char, int> fenceCostPerRegion = [];
     private readonly HashSet<GridCell> visited = [];

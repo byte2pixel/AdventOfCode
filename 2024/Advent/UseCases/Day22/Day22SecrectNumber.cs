@@ -1,10 +1,10 @@
 namespace Advent.UseCases.Day22;
 
-public static class Day22SecrectNumber
+internal static class Day22SecrectNumber
 {
     private const int PRUNE = 16777216;
 
-    public static long GenerateSecretNumber(long seed)
+    internal static long GenerateSecretNumber(long seed)
     {
         seed = (seed << 6) ^ seed; // multiply by 64 and XOR
         long pruned = seed % PRUNE;

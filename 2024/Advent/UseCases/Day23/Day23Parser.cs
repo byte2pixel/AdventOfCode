@@ -1,8 +1,8 @@
 namespace Advent.UseCases.Day23;
 
-public static class Day23Parser
+internal static class Day23Parser
 {
-    public static List<(string, string)> Parse(string input)
+    internal static List<(string, string)> Parse(string input)
     {
         return input
             .Split("\n", StringSplitOptions.RemoveEmptyEntries)

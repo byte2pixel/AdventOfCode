@@ -3,7 +3,7 @@ using Spectre.Console;
 
 namespace Advent.UseCases.Day9;
 
-public class Day9Part2Solver : IDay9Solver
+internal class Day9Part2Solver : IDay9Solver
 {
     /// <summary>
     /// This is a bit slower than the first part, but still performs well ~700ms

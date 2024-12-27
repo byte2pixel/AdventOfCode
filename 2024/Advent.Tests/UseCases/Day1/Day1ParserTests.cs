@@ -8,11 +8,10 @@ public class Day1ParserTests
     public void Parse_ShouldReturnTwoListsOfInts()
     {
         // Arrange
-        var parser = new Day1Parser();
         var input = "17211   12345\n" + "12397   34356\n" + "36633   45832\n" + "29933   67531\n";
 
         // Act
-        var result = parser.Parse(input);
+        var result = Day1Parser.Parse(input);
 
         // Assert
         result.Item1.Should().BeEquivalentTo([17211, 12397, 36633, 29933]);

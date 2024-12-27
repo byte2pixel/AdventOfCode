@@ -4,23 +4,15 @@ using Spectre.Console;
 
 namespace Advent.UseCases.Day4;
 
-public class Day4Part2Solver : IDay4Solver
+internal class Day4Part2Solver : IDay4Solver
 {
-    private readonly char[] _word;
-    private readonly int _wordLength;
+    private readonly char[] _word = ['M', 'A', 'S'];
+    private readonly char[] _reversedWord = ['S', 'A', 'M'];
     private readonly int _halfWordLength;
-    private readonly char[] _reversedWord;
 
-    public Day4Part2Solver(string word)
+    internal Day4Part2Solver()
     {
-        if (word.Length % 2 == 0)
-        {
-            throw new ArgumentException("Word must have an odd length");
-        }
-        _word = [.. word];
-        _wordLength = _word.Length;
-        _halfWordLength = (_wordLength + 1) / 2;
-        _reversedWord = _word.Reverse().ToArray();
+        _halfWordLength = (_word.Length + 1) / 2;
     }
 
     public int Solve(Day4Data data)
@@ -51,12 +43,12 @@ public class Day4Part2Solver : IDay4Solver
             {
                 int[] x1 = Day4Helpers.ComputeDiagDecIndexes(
                     i - (cols * (_halfWordLength - 1)) - (_halfWordLength - 1),
-                    _wordLength,
+                    _word.Length,
                     cols
                 );
                 int[] x2 = Day4Helpers.ComputeDiagIncIndexes(
                     i - (cols * (_halfWordLength - 1)) + (_halfWordLength - 1),
-                    _wordLength,
+                    _word.Length,
                     cols
                 );
                 count += (LookForWord(data, x1) && LookForWord(data, x2)) ? 1 : 0;
@@ -72,8 +64,8 @@ public class Day4Part2Solver : IDay4Solver
             return false;
 
         // Use stackalloc for small arrays
-        Span<char> chars = stackalloc char[_wordLength];
-        for (int x = 0; x < _wordLength; x++)
+        Span<char> chars = stackalloc char[_word.Length];
+        for (int x = 0; x < _word.Length; x++)
         {
             chars[x] = data[letterIndexes[x]];
         }

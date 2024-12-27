@@ -1,8 +1,8 @@
 namespace Advent.UseCases.Day3;
 
-public static class Day3Parser
+internal static class Day3Parser
 {
-    public static string Parse(string input)
+    internal static string Parse(string input)
     {
         // remove \n and replace with ""
         var lines = input.Split('\n', StringSplitOptions.RemoveEmptyEntries);

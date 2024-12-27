@@ -5,7 +5,7 @@ using Spectre.Console;
 
 namespace Advent.UseCases.Day16;
 
-public class Day16Part2Solver : IDay6Solver
+internal class Day16Part2Solver : IDay6Solver
 {
     public int Solve(GridData input)
     {

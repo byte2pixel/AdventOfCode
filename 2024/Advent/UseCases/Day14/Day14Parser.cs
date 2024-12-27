@@ -2,9 +2,9 @@ using Advent.Common;
 
 namespace Advent.UseCases.Day14;
 
-public static class Day14Parser
+internal static class Day14Parser
 {
-    public static Day14Data Parse(string input)
+    internal static Day14Data Parse(string input)
     {
         /*
         // Example input:

@@ -1,8 +1,8 @@
 namespace Advent.UseCases.Day4;
 
-public static class Day4Helpers
+internal static class Day4Helpers
 {
-    public static int[] ComputeDiagDecIndexes(int i, int length, int columns)
+    internal static int[] ComputeDiagDecIndexes(int i, int length, int columns)
     {
         int[] indexes = new int[length];
         for (int j = 0; j < length; j++)
@@ -12,7 +12,7 @@ public static class Day4Helpers
         return indexes;
     }
 
-    public static int[] ComputeDiagIncIndexes(int i, int length, int columns)
+    internal static int[] ComputeDiagIncIndexes(int i, int length, int columns)
     {
         int[] indexes = new int[length];
         for (int j = 0; j < length; j++)
@@ -22,7 +22,7 @@ public static class Day4Helpers
         return indexes;
     }
 
-    public static int[] ComputeHorizontalIndexes(int i, int length)
+    internal static int[] ComputeHorizontalIndexes(int i, int length)
     {
         int[] indexes = new int[length];
         for (int j = 0; j < length; j++)
@@ -32,7 +32,7 @@ public static class Day4Helpers
         return indexes;
     }
 
-    public static int[] ComputeVerticalIndexes(int i, int length, int columns)
+    internal static int[] ComputeVerticalIndexes(int i, int length, int columns)
     {
         int[] indexes = new int[length];
         for (int j = 0; j < length; j++)
