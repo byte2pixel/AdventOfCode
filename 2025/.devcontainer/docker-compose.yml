@@ -1,0 +1,26 @@
+version: "3"
+
+services:
+  app:
+    build:
+      context: .
+      dockerfile: Dockerfile
+    volumes:
+      - ..:/advent
+      - elixir-deps:/advent/deps
+      - elixir-build:/advent/_build
+      - elixir-mix:/root/.mix
+      - node_modules:/advent/assets/node_modules
+    environment:
+      - GOOGLE_CLIENT_ID=136897329912-6aq4tta0e3fcdrnm5lpapk9e9f39oo7j.apps.googleusercontent.com
+      - DATABASE_URL=ecto://postgres:postgres@db.lab.local:5432/advent2025
+      - MIX_ENV=dev
+    command: sleep infinity
+    dns:
+      - 192.168.50.10
+
+volumes:
+  elixir-deps:
+  elixir-build:
+  elixir-mix:
+  node_modules:

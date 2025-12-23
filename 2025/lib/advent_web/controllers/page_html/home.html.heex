@@ -1,0 +1,31 @@
+<div class="px-4 py-10 sm:px-6 lg:px-8">
+  <div class="mx-auto max-w-4xl">
+    <h1 class="text-4xl font-bold text-center mb-8">Advent of Code 2025</h1>
+    
+<!-- Navigate to /inputs for input management -->
+    <div class="mt-10 text-center">
+      <.link
+        href={~p"/inputs"}
+        class="text-brand hover:underline text-lg font-semibold"
+      >
+        Manage Inputs →
+      </.link>
+    </div>
+
+    <div class="grid grid-cols-2 sm:grid-cols-4 md:grid-cols-6 gap-4">
+      <%= for day <- 1..12 do %>
+        <%= for part <- 1..2 do %>
+          <.link
+            href={~p"/solution/#{day}/#{part}"}
+            class="group relative rounded-lg border-2 border-zinc-200 p-6 hover:border-brand hover:bg-brand/5 transition"
+          >
+            <div class="text-center">
+              <div class="text-sm text-zinc-500">Day {day}</div>
+              <div class="text-2xl font-bold text-zinc-900">Part {part}</div>
+            </div>
+          </.link>
+        <% end %>
+      <% end %>
+    </div>
+  </div>
+</div>

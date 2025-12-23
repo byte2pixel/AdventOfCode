@@ -1,0 +1,56 @@
+<!-- Navigate back to home -->
+<div class="mt-6">
+  <.link href={~p"/"} class="text-brand hover:underline">← Back to Home</.link>
+</div>
+
+<.header>
+  Listing Inputs
+  <:actions>
+    <.link patch={~p"/inputs/new"}>
+      <.button>New Input</.button>
+    </.link>
+  </:actions>
+</.header>
+
+<.table
+  id="inputs"
+  rows={@streams.inputs}
+  row_click={fn {_id, input} -> JS.navigate(~p"/inputs/#{input}") end}
+>
+  <:col :let={{_id, input}} label="Day">{input.day}</:col>
+  <:col :let={{_id, input}} label="Part">{input.part}</:col>
+  <:col :let={{_id, input}} label="Input type">{input.input_type}</:col>
+  <:col :let={{_id, input}} label="Input">
+    <div class="truncate-cell">{input.input}</div>
+  </:col>
+  <:action :let={{_id, input}}>
+    <div class="sr-only">
+      <.link navigate={~p"/inputs/#{input}"}>Show</.link>
+    </div>
+    <.link patch={~p"/inputs/#{input}/edit"}>Edit</.link>
+  </:action>
+  <:action :let={{id, input}}>
+    <.link
+      phx-click={JS.push("delete", value: %{id: input.id}) |> hide("##{id}")}
+      data-confirm="Are you sure?"
+    >
+      Delete
+    </.link>
+  </:action>
+</.table>
+
+<.modal
+  :if={@live_action in [:new, :edit]}
+  id="input-modal"
+  show
+  on_cancel={JS.patch(~p"/inputs")}
+>
+  <.live_component
+    module={AdventWeb.InputLive.FormComponent}
+    id={@input.id || :new}
+    title={@page_title}
+    action={@live_action}
+    input={@input}
+    patch={~p"/inputs"}
+  />
+</.modal>

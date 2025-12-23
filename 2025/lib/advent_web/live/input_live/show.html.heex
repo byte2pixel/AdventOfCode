@@ -1,0 +1,29 @@
+<.header>
+  Input {@input.id}
+  <:subtitle>This is a input record from your database.</:subtitle>
+  <:actions>
+    <.link patch={~p"/inputs/#{@input}/show/edit"} phx-click={JS.push_focus()}>
+      <.button>Edit input</.button>
+    </.link>
+  </:actions>
+</.header>
+
+<.list>
+  <:item title="Day">{@input.day}</:item>
+  <:item title="Part">{@input.part}</:item>
+  <:item title="Input type">{@input.input_type}</:item>
+  <:item title="Input">{@input.input}</:item>
+</.list>
+
+<.back navigate={~p"/inputs"}>Back to inputs</.back>
+
+<.modal :if={@live_action == :edit} id="input-modal" show on_cancel={JS.patch(~p"/inputs/#{@input}")}>
+  <.live_component
+    module={AdventWeb.InputLive.FormComponent}
+    id={@input.id}
+    title={@page_title}
+    action={@live_action}
+    input={@input}
+    patch={~p"/inputs/#{@input}"}
+  />
+</.modal>

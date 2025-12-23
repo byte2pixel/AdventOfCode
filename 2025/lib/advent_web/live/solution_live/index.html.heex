@@ -1,0 +1,108 @@
+<div class="px-4 py-10">
+  <div class="mx-auto max-w-6xl">
+    <div class="mb-8">
+      <.link href={~p"/"} class="text-brand hover:underline">← Back to Home</.link>
+      <h1 class="text-3xl font-bold mt-4">Day {@day} - Part {@part}</h1>
+    </div>
+
+    <div class="grid grid-cols-1 lg:grid-cols-2 gap-8">
+      <!-- Left: Controls -->
+      <div>
+        <form phx-change="select_input">
+          <div class="mb-4">
+            <label class="block text-sm font-medium mb-2">Select Input:</label>
+            <select name="id" class="w-full rounded border-zinc-300" disabled={@solving}>
+              <option value="">-- Select Input --</option>
+              <option
+                :for={input <- @inputs}
+                value={input.id}
+                selected={@selected_input && @selected_input.id == input.id}
+              >
+                {input.input_type} (Day {input.day}, Part {input.part})
+              </option>
+            </select>
+          </div>
+        </form>
+
+        <div :if={@selected_input} class="mb-4">
+          <label class="block text-sm font-medium mb-2">Input Preview:</label>
+          <pre class="bg-zinc-50 p-4 rounded max-h-48 overflow-auto text-xs">{String.slice(@selected_input.input, 0, 500)}{if String.length(@selected_input.input) > 500, do: "..."}</pre>
+        </div>
+        
+<!-- Visualization options -->
+        <div class="mb-4 space-y-2">
+          <label class="flex items-center space-x-2">
+            <input
+              type="checkbox"
+              phx-click="toggle_visualization"
+              checked={@enable_visualization}
+              class="rounded border-zinc-300"
+            />
+            <span class="text-sm">Enable visualization (slower)</span>
+          </label>
+
+          <form :if={@enable_visualization} phx-change="set_speed" class="ml-6 space-y-1">
+            <label class="block text-sm text-zinc-600">
+              Speed: {@visualization_speed}ms per step
+            </label>
+            <input
+              type="range"
+              name="speed"
+              min="10"
+              max="500"
+              value={@visualization_speed}
+              class="w-full"
+            />
+            <div class="flex justify-between text-xs text-zinc-400">
+              <span>Fast (10ms)</span>
+              <span>Slow (500ms)</span>
+            </div>
+          </form>
+        </div>
+
+        <.button phx-click="solve" disabled={is_nil(@selected_input) || @solving}>
+          {if @solving, do: "Solving...", else: "Solve"}
+        </.button>
+
+        <div :if={@result} class="mt-4 p-4 bg-green-50 border border-green-200 rounded">
+          <p class="font-bold text-green-900">Result:</p>
+          <p class="text-2xl font-mono text-green-700">{@result}</p>
+          <p :if={@solve_time} class="text-xs text-green-600 mt-2">
+            Completed in {Float.round(@solve_time / 1000, 2)}s
+          </p>
+        </div>
+      </div>
+      
+<!-- Right: Visualization -->
+      <div>
+        <div class="bg-zinc-50 rounded-lg p-8 min-h-[400px] flex items-center justify-center border-2 border-dashed border-zinc-300">
+          <%= if @enable_visualization do %>
+            <%= case get_visualization_component(@day, @part) do %>
+              <% {:ok, component} -> %>
+                <.live_component
+                  module={component}
+                  id="visualization"
+                  state={@visualization_state}
+                />
+              <% {:error, :no_visualization} -> %>
+                <%= if @visualization_state do %>
+                  <pre class="text-xs">{inspect(@visualization_state)}</pre>
+                <% else %>
+                  <p class="text-zinc-400">No visualization available for this day/part</p>
+                <% end %>
+            <% end %>
+          <% else %>
+            <div class="text-center">
+              <p class="text-zinc-600 mb-2">Visualization disabled</p>
+              <p class="text-sm text-zinc-400">Solving at maximum speed...</p>
+              <div :if={@solving} class="mt-4">
+                <div class="animate-spin rounded-full h-12 w-12 border-b-2 border-brand mx-auto">
+                </div>
+              </div>
+            </div>
+          <% end %>
+        </div>
+      </div>
+    </div>
+  </div>
+</div>
