@@ -24,7 +24,8 @@ defmodule AdventWeb.SolutionLive.Index do
      |> assign(:enable_visualization, false)
      |> assign(:visualization_speed, 100)
      |> assign(:solve_time, nil)
-     |> assign(:session_id, session_id)}
+     |> assign(:session_id, session_id)
+     |> assign(:visualization_available, visualization_available?(day, part))}
   end
 
   @impl true
@@ -200,5 +201,18 @@ defmodule AdventWeb.SolutionLive.Index do
       # Use default visualization if not implemented
       {:ok, AdventWeb.Live.SolutionLive.Visualizations.Default}
     end
+  end
+
+  # Returns true if a visualization component is implemented for the given day/part
+  defp visualization_available?(day, part) do
+    day_str = String.pad_leading(Integer.to_string(day), 2, "0")
+
+    module_name =
+      Module.concat([
+        AdventWeb.SolutionLive.Visualizations,
+        "Day#{day_str}Part#{part}"
+      ])
+
+    Code.ensure_loaded?(module_name)
   end
 end

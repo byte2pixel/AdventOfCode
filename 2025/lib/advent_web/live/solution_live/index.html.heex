@@ -37,8 +37,14 @@
               phx-click="toggle_visualization"
               checked={@enable_visualization}
               class="rounded border-zinc-300"
+              disabled={!@visualization_available}
             />
-            <span class="text-sm">Enable visualization (slower)</span>
+            <span class="text-sm">
+              Enable visualization (slower)
+              <span :if={!@visualization_available} class="ml-2 text-xs text-zinc-400">
+                (Not available for this day/part)
+              </span>
+            </span>
           </label>
 
           <form :if={@enable_visualization} phx-change="set_speed" class="ml-6 space-y-1">
@@ -86,14 +92,23 @@
                 />
             <% end %>
           <% else %>
-            <div class="text-center">
-              <p class="text-zinc-600 mb-2">Visualization disabled</p>
-              <p class="text-sm text-zinc-400">Solving at maximum speed...</p>
-              <div :if={@solving} class="mt-4">
-                <div class="animate-spin rounded-full h-12 w-12 border-b-2 border-brand mx-auto">
+            <%= case get_visualization_component(@day, @part) do %>
+              <% {:ok, component} when component == AdventWeb.Live.SolutionLive.Visualizations.Default -> %>
+                <.live_component
+                  module={component}
+                  id="visualization"
+                  state={@visualization_state}
+                />
+              <% _ -> %>
+                <div class="text-center">
+                  <p class="text-zinc-600 mb-2">Visualization disabled</p>
+                  <p class="text-sm text-zinc-400">Solving at maximum speed...</p>
+                  <div :if={@solving} class="mt-4">
+                    <div class="animate-spin rounded-full h-12 w-12 border-b-2 border-brand mx-auto">
+                    </div>
+                  </div>
                 </div>
-              </div>
-            </div>
+            <% end %>
           <% end %>
         </div>
       </div>
