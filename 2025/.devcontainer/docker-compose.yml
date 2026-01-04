@@ -11,13 +11,14 @@ services:
       - elixir-build:/advent/_build
       - elixir-mix:/root/.mix
       - node_modules:/advent/assets/node_modules
+    env_file:
+      - ../.env
     environment:
-      - GOOGLE_CLIENT_ID=136897329912-6aq4tta0e3fcdrnm5lpapk9e9f39oo7j.apps.googleusercontent.com
-      - DATABASE_URL=ecto://postgres:postgres@db.lab.local:5432/advent2025
       - MIX_ENV=dev
     command: sleep infinity
     dns:
-      - 192.168.50.10
+      - 192.168.50.10 # Replace with your local DNS server if needed
+      - 8.8.8.8       # Google Public DNS
 
 volumes:
   elixir-deps:

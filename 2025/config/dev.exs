@@ -2,10 +2,7 @@ import Config
 
 # Configure your database
 config :advent, Advent.Repo,
-  username: "postgres",
-  password: "postgres",
-  hostname: "db.lab.local",
-  database: "advent2025",
+  url: System.get_env("DATABASE_URL"),
   stacktrace: true,
   show_sensitive_data_on_connection_error: true,
   pool_size: 10

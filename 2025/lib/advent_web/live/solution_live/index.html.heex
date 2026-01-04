@@ -84,12 +84,6 @@
                   id="visualization"
                   state={@visualization_state}
                 />
-              <% {:error, :no_visualization} -> %>
-                <%= if @visualization_state do %>
-                  <pre class="text-xs">{inspect(@visualization_state)}</pre>
-                <% else %>
-                  <p class="text-zinc-400">No visualization available for this day/part</p>
-                <% end %>
             <% end %>
           <% else %>
             <div class="text-center">

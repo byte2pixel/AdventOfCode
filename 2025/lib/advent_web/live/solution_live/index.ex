@@ -197,7 +197,8 @@ defmodule AdventWeb.SolutionLive.Index do
     if Code.ensure_loaded?(module_name) do
       {:ok, module_name}
     else
-      {:error, :no_visualization}
+      # Use default visualization if not implemented
+      {:ok, AdventWeb.Live.SolutionLive.Visualizations.Default}
     end
   end
 end

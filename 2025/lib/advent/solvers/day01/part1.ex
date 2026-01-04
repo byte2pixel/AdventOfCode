@@ -3,12 +3,15 @@ defmodule Advent.Solvers.Day01.Part1 do
   Solver for Day 1, Part 1: Safe Dial Problem
   """
 
+  @behaviour Advent.Solvers.Behaviours.Solver
+  alias Advent.Solvers.Day01.Parser
+
   def solve(input, step_callback \\ nil, speed_context \\ nil) do
     IO.inspect("Starting Day 1, Part 1 solver", label: "SOLVER")
 
-    rotations = parse_input(input)
+    rotations = parse(input)
 
-    {_final_position, _final_degrees, password} =
+    {_final_position, _final_degrees, final_rotations} =
       Enum.reduce(rotations, {50, 180.0, 0}, fn rotation, {pos, degrees, count} ->
         new_pos = apply_rotation(pos, rotation)
 
@@ -65,19 +68,11 @@ defmodule Advent.Solvers.Day01.Part1 do
         {new_pos, new_degrees, new_count}
       end)
 
-    password
+    final_rotations
   end
 
-  defp parse_input(input) do
-    input
-    |> String.split("\n", trim: true)
-    |> Enum.map(&parse_rotation/1)
-  end
-
-  defp parse_rotation(line) do
-    <<dir::binary-size(1), distance::binary>> = line
-    {dir, String.to_integer(distance)}
-  end
+  @impl true
+  def parse(input), do: Parser.parse_input(input)
 
   defp apply_rotation(position, {"L", distance}) do
     result = rem(position - distance, 100)
